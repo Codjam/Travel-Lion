@@ -1,63 +1,81 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Travel Lion</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-  </head>
-  <body class="">
-    <div class="mainBody">
-      <div class="container" id="inputDiv">
-        <h1 class="headline animated slideInDown">Hello, where would you like to travel?</h1>
-        <form class="animated slideInLeft">
-          <div class="form-group">
-            <label for="inputCity" class="sr-only">Input City</label>
-            <input type="text" class="form-control" id="inputCity">
-            <button id="submitBtn" type="button" class="btn btn-dark">Submit</button>
-          </div>
-        </form>
-      </div>
+  <title>Travel Lion</title>
 
+</head>
 
-      <div class="container background" >
-        <h1>Things To Do</h1>
-        <div id="activitiesDiv">
-
+<body class="">
+  <div class="mainBody">
+    <div class="container" id="inputDiv">
+      <h1 class="headline animated slideInDown">Hello, where would you like to travel?</h1>
+      <form class="animated slideInLeft">
+        <div class="form-group">
+          <label for="inputCity" class="sr-only">Input City</label>
+          <input type="text" class="form-control" id="inputCity">
+          <button id="submitBtn" type="button" class="btn btn-dark">Submit</button>
         </div>
-      </div>
-
-      <div class="container background" >
-        <h1>Weather</h1>
-        <div id="weatherDiv">
-
-        </div>
-      </div>
-
-      <footer class="footer">
-        <div class="container">
-          <span class="text-muted">&copy 2018 - Travel Lion</span>
-        </div>
-      </footer>
+      </form>
     </div>
 
 
+    <div class="container background">
+      <h1>Things To Do</h1>
+      <div id="activitiesDiv">
+
+      </div>
+    </div>
+
+    <div class="container background">
+      <h1>Weather</h1>
+      <div id="weatherDiv">
+
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">&copy 2018 - Travel Lion</span>
+      </div>
+    </footer>
+  </div>
 
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
-    <script src="javascript/custom.js"> </script>
-  </body>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+  <script>
+    function gAutoComplete() {
+      var locInput = document.getElementById("inputCity");
+      var options = {
+        types: ["(cities)"],
+        componentRestrictions: {
+          country: "us"
+        }
+      };
+
+      var autocomplete = new google.maps.places.Autocomplete(locInput, options);
+    }
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCBCVEBvtLtjpWQfrU96srHskWk4V4Azzo&libraries=places&callback=gAutoComplete"></script>
+  <script src="javascript/custom.js">
+  </script>
+</body>
+
 </html>
