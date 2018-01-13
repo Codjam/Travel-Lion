@@ -1,0 +1,46 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.mainBody {
+  background-image:url("../assets/images/mountains.jpeg");
+  height:100%;
+}
+
+html, body {
+  margin:0;
+  padding:0;
+  height:100%;
+}
+
+
+
+.background {
+  display:none;
+}
+
+.background {
+  background-color: #f7f8f9;
+  border-radius: 5px;
+  margin-top: 20px;
+  opacity: .7;
+}
+
+.form-group {
+  padding-bottom: 3rem;
+
+}
+
+.headline {
+  text-align: center;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+}
+
+.footer {
+   position:absolute;
+   bottom:0;
+   /* height:20px;  */
+   text-align: left;
+   margin-left: 9rem;
+}
