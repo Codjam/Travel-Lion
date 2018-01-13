@@ -1,9 +1,9 @@
 body {
   font-family: 'Roboto', sans-serif;
+  background-image:url("../assets/images/mountains.jpeg");
 }
 
 .mainBody {
-  background-image:url("../assets/images/mountains.jpeg");
   height:100%;
 }
 
