@@ -1,4 +1,4 @@
-console.log("test");
+console.log("script loading");
 
 $("#submitBtn").on("click", function(event) {
   // event.preventDefault();
