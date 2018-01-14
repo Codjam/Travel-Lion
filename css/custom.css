@@ -39,3 +39,7 @@ html, body {
    text-align: left;
    margin-left: 9rem;
 }
+
+.tlmargin{
+  margin: 0,auto;
+}
