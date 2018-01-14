@@ -10,9 +10,8 @@ $("#submitBtn").on("click", function(event) {
   // Prevent page reloading
   event.preventDefault();
 
-
   // Test button works
-  console.log("button works")
+  console.log("button works");
 
   // Show divs for weather and foursquare content
   $(".background").show();
@@ -25,3 +24,14 @@ $("#submitBtn").on("click", function(event) {
 
   return false;
 });
+
+
+var counter = 0;
+setInterval(function(){
+    $("#mainImage").prop("class", "stage" + counter);
+    if (counter === 2){
+        counter = 0;
+    } else {
+        counter++;
+    }
+}, 10000);
