@@ -16,8 +16,8 @@
 
 </head>
 
-<body class="">
-  <div id="mainImage" class="mainBody stage0">
+<body class="mainImage">
+  <div class="mainBody stage0">
     <div class="container" id="inputDiv">
       <h1 class="headline animated slideInDown">Hello, where would you like to travel?</h1>
       <form class="animated slideInLeft">
@@ -31,27 +31,28 @@
 
 
     <div class="container background">
-      <h1>Things To Do</h1>
+      <h1 class="text-center">Top Picks in the Area</h1>
       <div>
-        <div id="activitiesDiv" class="row text-center">
+        <div id="activitiesDiv" class="row mx-auto">
 
         </div>
 
       </div>
     </div>
 
-    <div class="container background">
-      <h1>Weather</h1>
-      <div class="row">
-      <div id="weatherDiv">
-        <div id="city"></div>
-        <div id="icon"></div>
-        <div id="temp"></div>
-        <div id="condition"></div>
+    <div class="container background mx-auto">
+      <h1 class="text-center">Weather</h1>
+      <div class="mx-auto d-block text-center" id="city"></div>
+      <div id="weatherDiv" class="row mx-auto">
+        <div class="card bg-light cardWeather mx-auto">
+        <div class="card-title text-center">Today</div>
+        <div id="icon" class="text-center"></div>
+        <div id="temp" class="text-center"></div>
+        <div id="condition" class="text-center"></div>
+        </div>
         <div id="forecast"></div>
       </div>
     </div>
-  </div>
 
     <footer class="footer">
       <div class="container">
