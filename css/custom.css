@@ -46,6 +46,7 @@ html, body {
    margin-left: 9rem;
 }
 
+
 body:after {
     display:none;
     content:url("../assets/images/seattle.jpeg")
@@ -71,4 +72,7 @@ body:after {
 }
 .stage2 {
   background-image:url("../assets/images/newyork.jpeg");
+
 }
+.tlmargin{
+  margin: 0,auto;

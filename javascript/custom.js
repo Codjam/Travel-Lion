@@ -55,31 +55,94 @@ $("#submitBtn").on("click", function(event) {
 
   //AJAX Request for foursquare
   // Put foursquare query here
-  var queryURL2 = "https://api.foursquare.com/v2/venues/explore?" + "mode=url" + "&near=" + userCityandState + "&limit=6" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=20180112" + "&q=Fun";
+  var queryURL2 = "https://api.foursquare.com/v2/venues/explore?" + "mode=url" + "&near=" + userCityandState + "&limit=6" + "&venuePhotos=1" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=20180112" + "&q=Fun";
   $.ajax({
     url: queryURL2,
     method: "GET"
-  }).done(function(response) {
-    console.log(response);
-  });
+  })
+  .done(function(response){
+      // API Object Path
+     console.log(response);
+      let biz = response.response.groups[0].items;
+
+      for(var i = 0; i < biz.length; i++ ){
+          console.log(biz[i]);
+          var bizName = biz[i].venue.name;
+          var bizRating = biz[i].venue.rating;
+          var bizCity = biz[i].venue.location.city;
+          var bizAddress = biz[i].venue.location.address;
+          var bizId = biz[i].venue.id;
+
+          // Build Venue Image Url
+          var imgPrefix = biz[i].venue.photos.groups[0].items[0].prefix;
+          var imgSize = "325x222";
+          var imgSuffix = biz[i].venue.photos.groups[0].items[0].suffix;
+          var bizImage = imgPrefix+imgSize+imgSuffix;
+
+
+          let bizCard = $("<div class=card>");
+          let bizImg = $("<img class=card-img-top img-responsive>");
+          let bizBlock = $("<div class=card-block>");
+          let bizTitle = $("<h4 class=card-title>");
+          let bizCity1 = $("<p>");
+          let bizAddy = $("<p>");
+          bizCard.css('width', '301');
+          bizImg.attr('src', bizImage);
+          bizImg.css('width', '300');
+          bizTitle.text(bizName);
+          bizCity1.text(bizCity);
+          bizAddy.text(bizAddress)
+          // bizID1.text(bizId)
+          bizCard.append(bizImg);
+          bizCard.append(bizBlock);
+          bizBlock.append(bizTitle);
+          bizBlock.append(bizAddy);
+          bizBlock.append(bizCity1);
+          $("#activitiesDiv").append(bizCard);
+}
+});
+
+
+//
+//   printSearchResults: function (bizName, starWidth, bizCity, bizImage, bizId  ){
+//         $('html, body').scrollTop(300);
+//         appFuncs.favorites.favClicked = false;
+//         $(".results").append(`
+//             <div class="card--Result" data-venueid="${[bizId]}">
+//                 <div class="card--Result__Img">
+//                     <img src="${[bizImage]}" alt="" width="100%" class="img-responsive">
+//                     <div class="shadow cardLaunch" data-venueid="${[bizId]}"></div>
+//                                 <div class="cardFavBtn favThisBtn" data-venueid="${[bizId]}"><i class="fa fa-star-o favStar " aria-hidden="true"></i></div>
+//                 </div>
+//                 <div class="card--Result__Info cardLaunch" data-venueid="${[bizId]}">
+//                     <h3 class="card--Title" title="${[bizName]}">${[bizName]}</h3>
+//                     <div class="card--Rating">
+//                         <div class="card--Rating__Overlay" style=width:${[starWidth]}>
+//                             <img src="assets/imgs/starsFill.png" alt="">
+//                         </div>
+//                     </div>
+//                     <div class="card--Location">
+//                         <p><span><img src="assets/imgs/cardLocation.png" alt=""></span>${[bizCity]}</p>
+//                     </div>
+//                 </div>
+//             </div>
+//         `);
+//     },
+// },
 
 
   // Put Ajax Weather query here
   let lat = "";
 
         let long  = "";
-
         let cityName = userCityandState
-
         let queryURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22"
-
         + cityName + "%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
          $.ajax({
           url: queryURL,
           method: "GET"
         })
-
         .done(function(response) {
           console.log(queryURL);
 
@@ -120,15 +183,7 @@ $("#submitBtn").on("click", function(event) {
             $('#forecast-day' + i).append(icon);
 
             }
-
-
 });
-
-
-
-
-
-
 
   //Pushing to firebase
   database.ref().push({
