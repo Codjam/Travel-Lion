@@ -30,6 +30,7 @@ $(".background").hide();
 $("#submitBtn").on("click", function(event) {
   // Prevent page reloading
   event.preventDefault();
+  //emptyout Doms
   $("#forecast").empty();
   $("#activitiesDiv").empty();
 
