@@ -80,10 +80,10 @@ $("#submitBtn").on("click", function(event) {
           var bizImage = imgPrefix+imgSize+imgSuffix;
 
 
-          let bizCard = $("<div class=card>");
-          let bizImg = $("<img class=card-img-top img-responsive>");
-          let bizBlock = $("<div class=card-block>");
-          let bizTitle = $("<h4 class=card-title>");
+          let bizCard = $("<div class='card mx-auto imgMargin'>");
+          let bizImg = $("<img class='card-img-top img-responsive'>");
+          let bizBlock = $("<div class='card-block'>");
+          let bizTitle = $("<h4 class='card-title'>");
           let bizCity1 = $("<p>");
           let bizAddy = $("<p>");
           bizCard.css('width', '301');
@@ -175,10 +175,13 @@ $("#submitBtn").on("click", function(event) {
             div.attr("id", "forecast-day" + i);
             div.attr("class", "forecast");
 
-
-            $('#forecast').append(div);
+            $('#weatherDiv').append(div);
 
             $('#forecast-day' + i).html(response.query.results.channel.item.forecast[i].day + "  " + response.query.results.channel.item.forecast[i].high + "&#8457");
+            $('#forecast-day' + i).addClass("card");
+            $('#forecast-day' + i).addClass("bg-light");
+            $('#forecast-day' + i).addClass("cardWeather");
+            $('#forecast-day' + i).addClass("mx-auto");
 
             $('#forecast-day' + i).append(icon);
 
