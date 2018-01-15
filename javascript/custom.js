@@ -17,7 +17,6 @@ let userCityandState = "";
 // foursquare keys
 let client_id = "PIJMX4JSYGX0LTGVJZGWQ13AOZBUJ4TDD3QJ32QR2CN1OMDN";
 let client_secret = "U0BF5HKPA54ZB4KPTDIPAZLCV3X4435YPVCBUZAZEWTKVL42";
-
 //End Adding FB and Vars ---GABE
 
 // Test to ensure js loading
@@ -25,6 +24,7 @@ console.log("script loading");
 
 // Hide content divs foursquare and weather
 $(".background").hide();
+
 
 // Button submit function, will remove button eventually
 $("#submitBtn").on("click", function(event) {
@@ -55,141 +55,116 @@ $("#submitBtn").on("click", function(event) {
 
   //AJAX Request for foursquare
   // Put foursquare query here
-  var queryURL2 = "https://api.foursquare.com/v2/venues/explore?" + "mode=url" + "&near=" + userCityandState + "&limit=6" + "&venuePhotos=1" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=20180112" + "&q=Fun";
+  var queryURL2 = "https://api.foursquare.com/v2/venues/explore?" + "mode=url" + "&near=" + userCityandState + "&limit=12" + "&venuePhotos=1" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=20180112" + "&q=Fun";
   $.ajax({
-    url: queryURL2,
-    method: "GET"
-  })
-  .done(function(response){
+      url: queryURL2,
+      method: "GET"
+    })
+    .done(function(response) {
       // API Object Path
-     console.log(response);
+      console.log(response);
       let biz = response.response.groups[0].items;
 
-      for(var i = 0; i < biz.length; i++ ){
-          console.log(biz[i]);
-          var bizName = biz[i].venue.name;
-          var bizRating = biz[i].venue.rating;
-          var bizCity = biz[i].venue.location.city;
-          var bizAddress = biz[i].venue.location.address;
-          var bizId = biz[i].venue.id;
+      for (var i = 0; i < biz.length; i++) {
+        console.log(biz[i]);
+        var bizName = biz[i].venue.name;
+        var bizRating = biz[i].venue.rating;
+        var bizAddress = biz[i].venue.location.address + ",   " + biz[i].venue.location.city + ", " + biz[i].venue.location.state + ", " + biz[i].venue.location.postalCode;
+        var bizId = biz[i].venue.id;
+        var categories = biz[i].venue.categories[0].name;
+        var url = biz[i].venue.url;
+        console.log(url);
+        var rating = biz[i].venue.rating;
 
-          // Build Venue Image Url
-          var imgPrefix = biz[i].venue.photos.groups[0].items[0].prefix;
-          var imgSize = "325x222";
-          var imgSuffix = biz[i].venue.photos.groups[0].items[0].suffix;
-          var bizImage = imgPrefix+imgSize+imgSuffix;
-
-
-          let bizCard = $("<div class='card mx-auto imgMargin'>");
-          let bizImg = $("<img class='card-img-top img-responsive'>");
-          let bizBlock = $("<div class='card-block'>");
-          let bizTitle = $("<h4 class='card-title'>");
-          let bizCity1 = $("<p>");
-          let bizAddy = $("<p>");
-          bizCard.css('width', '301');
-          bizImg.attr('src', bizImage);
-          bizImg.css('width', '300');
-          bizTitle.text(bizName);
-          bizCity1.text(bizCity);
-          bizAddy.text(bizAddress)
-          // bizID1.text(bizId)
-          bizCard.append(bizImg);
-          bizCard.append(bizBlock);
-          bizBlock.append(bizTitle);
-          bizBlock.append(bizAddy);
-          bizBlock.append(bizCity1);
-          $("#activitiesDiv").append(bizCard);
-}
-});
+        // Build Venue Image Url
+        var imgPrefix = biz[i].venue.photos.groups[0].items[0].prefix;
+        var imgSize = "325x222";
+        var imgSuffix = biz[i].venue.photos.groups[0].items[0].suffix;
+        var bizImage = imgPrefix + imgSize + imgSuffix;
 
 
-//
-//   printSearchResults: function (bizName, starWidth, bizCity, bizImage, bizId  ){
-//         $('html, body').scrollTop(300);
-//         appFuncs.favorites.favClicked = false;
-//         $(".results").append(`
-//             <div class="card--Result" data-venueid="${[bizId]}">
-//                 <div class="card--Result__Img">
-//                     <img src="${[bizImage]}" alt="" width="100%" class="img-responsive">
-//                     <div class="shadow cardLaunch" data-venueid="${[bizId]}"></div>
-//                                 <div class="cardFavBtn favThisBtn" data-venueid="${[bizId]}"><i class="fa fa-star-o favStar " aria-hidden="true"></i></div>
-//                 </div>
-//                 <div class="card--Result__Info cardLaunch" data-venueid="${[bizId]}">
-//                     <h3 class="card--Title" title="${[bizName]}">${[bizName]}</h3>
-//                     <div class="card--Rating">
-//                         <div class="card--Rating__Overlay" style=width:${[starWidth]}>
-//                             <img src="assets/imgs/starsFill.png" alt="">
-//                         </div>
-//                     </div>
-//                     <div class="card--Location">
-//                         <p><span><img src="assets/imgs/cardLocation.png" alt=""></span>${[bizCity]}</p>
-//                     </div>
-//                 </div>
-//             </div>
-//         `);
-//     },
-// },
+        let bizCard = $("<div class=card>");
+        let bizImg = $("<img class=card-img-top img-responsive>");
+        let bizBlock = $("<div class=card-block>");
+        let bizTitle = $("<h4 class=card-title>");
+        let bizCat = $("<a>");
+        let bizAddy = $("<p>");
+        let bizRate = $("<p>");
+        let bizUrl = $("<a>");
+        bizCard.css('width', '301');
+        bizImg.attr('src', bizImage);
+        bizImg.css('width', '300');
+        bizBlock.addClass('cardPadding');
+        bizTitle.html("<b>" + bizName + "</b>");
+        bizCat.html("<b>" + categories + "</b><br>");
+        bizUrl.html("<a target=\"_blank\" href=" + url + ">Website</a>");
+        bizRate.text("Rating " + rating);
+        bizAddy.addClass('addressItalic');
+        bizAddy.html(bizAddress);
+        bizCard.append(bizImg, bizBlock);
+        bizBlock.append(bizTitle, bizCat, bizAddy, bizRate, bizUrl);
+        $("#activitiesDiv").append(bizCard);
+      }
+    });
 
 
   // Put Ajax Weather query here
   let lat = "";
+  let long = "";
+  let cityName = userCityandState;
+  let queryURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22" +
+    cityName + "%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
-        let long  = "";
-        let cityName = userCityandState
-        let queryURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22"
-        + cityName + "%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+  $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+    .done(function(response) {
+      console.log(queryURL);
+      console.log(response);
 
-         $.ajax({
-          url: queryURL,
-          method: "GET"
-        })
-        .done(function(response) {
-          console.log(queryURL);
+      let weather = response.query.results.channel;
+      let weatherCity = weather.location.city;
+      let weatherRegion = weather.location.region;
+      let icon = "<img src='http://l.yimg.com/a/i/us/we/52/" + response.query.results.channel.item.condition.code + ".gif'>"
+      lat = response.query.results.channel.item.lat;
+      long = response.query.results.channel.item.long;
 
-          console.log(response);
+      $('#city').text(response.query.results.channel.location.city + ", " + response.query.results.channel.location.region);
+      $('#icon').html(icon);
+      $('#temp').html("Today" + "<br>" + response.query.results.channel.item.condition.temp + " &#8457 " + "<br>" + response.query.results.channel.item.condition.text);
 
-          $('#city').text(response.query.results.channel.location.city + ", " + response.query.results.channel.location.region);
+      lat = response.query.results.channel.item.lat;
+      long = response.query.results.channel.item.long;
 
-          let icon = "<img src='http://l.yimg.com/a/i/us/we/52/" + response.query.results.channel.item.condition.code + ".gif'>"
+      console.log(lat);
+      console.log(long);
 
-          $('#icon').html(icon);
-          $('#temp').html(response.query.results.channel.item.condition.temp + "&#8457");
-          $('#condition').text(response.query.results.channel.item.condition.text);
+      for (i = 1; i < 6; i++) {
+        let div = $("<div class=col>");
+        let cardDiv = $("<div class=card>");
+        let cardBlock = $("<div class=card-block>");
+        let icon = $("<img>");
 
-          lat = response.query.results.channel.item.lat;
+        div.attr("id", "forecast-day" + i);
+        div.attr("class", "forecast col");
+        cardDiv.addClass("card2");
+        cardBlock.addClass("text-center");
 
-          long = response.query.results.channel.item.long;
+        icon.attr("src", "http://l.yimg.com/a/i/us/we/52/" + response.query.results.channel.item.forecast[i].code + ".gif");
+        icon.attr("class", "icon con text-center");
 
-          console.log(lat);
-          console.log(long);
+        div.append(cardDiv);
+        cardDiv.append(cardBlock);
+        cardBlock.append(icon);
+        cardBlock.append("<br>" + response.query.results.channel.item.forecast[i].day + "<br>" + response.query.results.channel.item.forecast[i].high + "&#8457" + "<br>" + response.query.results.channel.item.forecast[i].text);
+        $('#forecast').append(div);
+      }
+    });
 
-          for(i = 1; i < 5; i++) {
-
-            let icon = $("<img>");
-
-            icon.attr("src", "http://l.yimg.com/a/i/us/we/52/" + response.query.results.channel.item.forecast[i].code + ".gif");
-            icon.attr("class", "icon");
-
-            let div = $("<div>");
-
-            div.attr("id", "forecast-day" + i);
-            div.attr("class", "forecast");
-
-            $('#weatherDiv').append(div);
-
-            $('#forecast-day' + i).html(response.query.results.channel.item.forecast[i].day + "  " + response.query.results.channel.item.forecast[i].high + "&#8457");
-            $('#forecast-day' + i).addClass("card");
-            $('#forecast-day' + i).addClass("bg-light");
-            $('#forecast-day' + i).addClass("cardWeather");
-            $('#forecast-day' + i).addClass("mx-auto");
-
-            $('#forecast-day' + i).append(icon);
-
-            }
-});
 
   //Pushing to firebase
-  database.ref().push({
+  database.ref().set({
     // userSearch: userSearch,
     userCity: userCity,
     userState: userState,
@@ -201,11 +176,11 @@ $("#submitBtn").on("click", function(event) {
 
 
 var counter = 0;
-setInterval(function(){
-    $("#mainImage").prop("class", "stage" + counter);
-    if (counter === 2){
-        counter = 0;
-    } else {
-        counter++;
-    }
+setInterval(function() {
+  $("#mainImage").prop("class", "stage" + counter);
+  if (counter === 2) {
+    counter = 0;
+  } else {
+    counter++;
+  }
 }, 10000);

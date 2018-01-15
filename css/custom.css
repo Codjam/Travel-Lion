@@ -22,8 +22,10 @@ html, body {
 .background {
   background-color: rgba(247, 248, 249,.9);
   border-radius: 5px;
+
   margin-top: 2em;
   margin-bottom: 2em;
+
 }
 
 .form-group {
@@ -73,6 +75,7 @@ body:after {
   background-image:url("../assets/images/newyork.jpeg");
 
 }
+
 .tlmargin{
   margin: 0,auto;
 }
@@ -84,4 +87,30 @@ body:after {
 .cardWeather {
   margin: 1em;
   padding: 1em;
+
 }
+.card {
+          margin: 0 auto; /* Added */
+          float: none; /* Added */
+          margin-bottom: 10px; /* Added */
+  }
+
+
+.card2 {
+          margin: 0 auto; /* Added */
+          float: none; /* Added */
+          padding-bottom: 0px; /* Added */
+          height: 150px;
+          width: 160px;
+          margin-bottom: 10px;
+    }
+
+
+.addressItalic {
+  font-style: italic;
+  padding-top: 5px;
+  color: blue;
+}
+
+.cardPadding{
+  padding: 5px;
