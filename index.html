@@ -20,11 +20,12 @@
   <div id="mainImage" class="mainBody stage0">
     <div class="container" id="inputDiv">
       <h1 class="headline animated slideInDown">Hello, where would you like to travel?</h1>
-      <form class="animated slideInLeft">
+      <form class="animated slideInLeft ">
+
         <div class="form-group">
           <label for="inputCity" class="sr-only">Input City</label>
           <input type="text" class="form-control" id="inputCity">
-          <button id="submitBtn" type="button" class="btn btn-dark">Submit</button>
+          <button id="submitBtn" type="button" class="btn btn-dark">Submit</button>        
         </div>
       </form>
     </div>
@@ -33,31 +34,38 @@
     <div class="container background">
       <h1>Things To Do</h1>
       <div>
-        <div id="activitiesDiv" class="row text-center">
-
+        <div id="activitiesDiv" class="row">
         </div>
-
       </div>
     </div>
-
     <div class="container background">
-      <h1>Weather</h1>
-      <div class="row">
-      <div id="weatherDiv">
-        <div id="city"></div>
-        <div id="icon"></div>
-        <div id="temp"></div>
-        <div id="condition"></div>
-        <div id="forecast"></div>
+      <div class="row ">
+        <div class="col-xs-12 text-center">
+          <h1 class="text-center">Weather & 5 Day Forcast</h1>
+        </div>
+      </div>
+      <h3 id="city"></h3>
+      <div id="forecast" class="row">
+        <div class="col">
+          <div class="card card2">
+            <div class="card-block text-center">
+              <div id="icon" class="text-center"></div>
+              <p id="temp"></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  </div>
+  </div>
 
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">&copy 2018 - Travel Lion</span>
-      </div>
-    </footer>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">&copy 2018 - Travel Lion</span>
+    </div>
+  </footer>
   </div>
 
 
@@ -86,4 +94,5 @@
   <script src="javascript/custom.js">
   </script>
 </body>
+
 </html>

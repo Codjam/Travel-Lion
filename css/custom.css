@@ -24,7 +24,8 @@ html, body {
   background-color: #f7f8f9;
   border-radius: 5px;
   margin-top: 20px;
-  opacity: .7;
+  /* **************Turned off to see cards better-Gabe************************* */
+  /* opacity: .7; */
 }
 
 .form-group {
@@ -74,5 +75,30 @@ body:after {
   background-image:url("../assets/images/newyork.jpeg");
 
 }
-.tlmargin{
-  margin: 0,auto;
+
+.card {
+          margin: 0 auto; /* Added */
+          float: none; /* Added */
+          margin-bottom: 10px; /* Added */
+  }
+
+
+.card2 {
+          margin: 0 auto; /* Added */
+          float: none; /* Added */
+          padding-bottom: 0px; /* Added */
+          height: 150px;
+          width: 160px;
+          margin-bottom: 10px;
+    }
+
+
+.addressItalic {
+  font-style: italic;
+  padding-top: 5px;
+  color: blue;
+}
+
+.cardPadding{
+  padding: 5px;
+}
