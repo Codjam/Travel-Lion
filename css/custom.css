@@ -1,12 +1,11 @@
-#mainImage{
-    background-position:center center;
+.mainImage{
+    background-position:center;
     background-repeat:no-repeat;
-    background-size:cover;
-    width:100vw;
-    height:100vh;
+    /* width:100%;
+    height:100%; */
     /* transition: background-image 1.5s ease; */
     font-family: 'Roboto', sans-serif;
-
+    background-size:cover;
 }
 
 .mainBody {
@@ -21,15 +20,16 @@ html, body {
 
 
 .background {
-  background-color: #f7f8f9;
+  background-color: rgba(247, 248, 249,.9);
   border-radius: 5px;
-  margin-top: 20px;
-  /* **************Turned off to see cards better-Gabe************************* */
-  /* opacity: .7; */
+
+  margin-top: 2em;
+  margin-bottom: 2em;
+
 }
 
 .form-group {
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
 
 }
 
@@ -76,6 +76,19 @@ body:after {
 
 }
 
+.tlmargin{
+  margin: 0,auto;
+}
+
+.imgMargin {
+  margin-bottom: 1em;
+}
+
+.cardWeather {
+  margin: 1em;
+  padding: 1em;
+
+}
 .card {
           margin: 0 auto; /* Added */
           float: none; /* Added */
@@ -101,4 +114,3 @@ body:after {
 
 .cardPadding{
   padding: 5px;
-}

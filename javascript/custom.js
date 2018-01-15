@@ -107,6 +107,7 @@ $("#submitBtn").on("click", function(event) {
       }
     });
 
+
   // Put Ajax Weather query here
   let lat = "";
   let long = "";
@@ -160,6 +161,7 @@ $("#submitBtn").on("click", function(event) {
         $('#forecast').append(div);
       }
     });
+
 
   //Pushing to firebase
   database.ref().set({
