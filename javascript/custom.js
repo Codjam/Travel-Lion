@@ -30,6 +30,8 @@ $(".background").hide();
 $("#submitBtn").on("click", function(event) {
   // Prevent page reloading
   event.preventDefault();
+  $("#forecast").empty();
+  $("#activitiesDiv").empty();
 
   // Test button works
   console.log("button works");
