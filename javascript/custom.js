@@ -14,6 +14,8 @@ let userCity = "";
 let userState = "";
 let userCityandState = "";
 let userSearch = "";
+var currentDate = moment().format('YYYYMMDD');
+console.log("the date is", currentDate);
 
 // foursquare keys
 let client_id = "PIJMX4JSYGX0LTGVJZGWQ13AOZBUJ4TDD3QJ32QR2CN1OMDN";
@@ -61,7 +63,7 @@ $("#submitBtn").on("click", function(event) {
 
   //AJAX Request for foursquare
   // Put foursquare query here
-  var queryURL2 = "https://api.foursquare.com/v2/venues/explore?" + "mode=url" + "&near=" + userCityandState + "&limit=12" + "&venuePhotos=1" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=20180117" + "&query=" + userSearch;
+  var queryURL2 = "https://api.foursquare.com/v2/venues/explore?" + "mode=url" + "&near=" + userCityandState + "&limit=12" + "&venuePhotos=1" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=" + currentDate + "&query=" + userSearch;
   $.ajax({
       url: queryURL2,
       method: "GET"
@@ -75,7 +77,8 @@ $("#submitBtn").on("click", function(event) {
         console.log(biz[i]);
         var bizName = biz[i].venue.name;
         var bizRating = biz[i].venue.rating;
-        var bizAddress = biz[i].venue.location.address + ",   " + biz[i].venue.location.city + ", " + biz[i].venue.location.state + ", " + biz[i].venue.location.postalCode;
+        var bizNumber = biz[i].venue.contact.formattedPhone;
+        var bizAddress = biz[i].venue.location.address + ",   " + biz[i].venue.location.city + ", " + biz[i].venue.location.state + ", " + biz[i].venue.location.postalCode + "<br> " + bizNumber;
         var bizId = biz[i].venue.id;
         var categories = biz[i].venue.categories[0].name;
         var url = biz[i].venue.url;
