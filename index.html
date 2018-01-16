@@ -20,28 +20,36 @@
   <div class="mainBody stage0">
     <div class="container" id="inputDiv">
       <h1 class="headline animated slideInDown">Hello, where would you like to travel?</h1>
-      <form class="animated slideInLeft ">
-
+      <form class="text-center ">
         <div class="form-group">
+          <select id="userDropDown" class="text-center btn btn-secondary dropdown-toggle animated slideInLeft gpwidth1 border rounded-left" name="">
+            <option>Top Picks</option>
+            <option>Trending</option>
+            <option>Food</option>
+            <option>Drinks</option>
+            <option>Coffee</option>
+            <option>Breakfast</option>
+            <option>Dinner</option>
+            <option>Nightlife</option>
+            <option>Fun</option>
+            <option>Shops</option>
+            <option>Arts</option>
+            <option>Outoors</option>
+            <option>Sights</option>
+          </select>
           <label for="inputCity" class="sr-only">Input City</label>
-          <input type="text" class="form-control" id="inputCity">
-          <button id="submitBtn" type="button" class="btn btn-dark">Submit</button>
+          <input type="text" class="animated slideInRight gpwidth border rounded-right" id="inputCity">
+          <button id="submitBtn" type="button" class="animated slideInRight btn btn-secondary">Submit</button>
         </div>
       </form>
     </div>
-
-
     <div class="container background">
       <h1 class="text-center">Top Picks in the Area</h1>
       <div>
-
-        <div id="activitiesDiv" class="row mx-auto">
-
-
+        <div id="activitiesDiv" class="row mx-auto scroll">
         </div>
       </div>
     </div>
-
     <div class="container background">
       <div class="row ">
         <div class="col-xs-12 text-center">
@@ -50,23 +58,12 @@
       </div>
       <h3 id="city"></h3>
       <div id="forecast" class="row">
-        <div class="col">
-          <div class="card card2">
-            <div class="card-block text-center">
-              <div id="icon" class="text-center"></div>
-              <p id="temp"></p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
   </div>
   </div>
-  <!-- //Text comment! -->
-
-
-
+  </div>
   <footer class="footer">
     <div class="container">
       <span class="text-muted">&copy 2018 - Travel Lion</span>
@@ -74,11 +71,10 @@
   </footer>
   </div>
 
-
-
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
