@@ -19,10 +19,22 @@
 <body class="mainImage">
   <div class="mainBody stage0">
     <div class="container" id="inputDiv">
-      <h1 class="headline animated slideInDown">Hello, where would you like to travel?</h1>
+      <h1 class="headline animated slideInDown">Hello, You've travel here, now lets find something to do...</h1>
       <form class="text-center ">
         <div class="form-group">
-          <select id="userDropDown" class="text-center btn btn-secondary dropdown-toggle animated slideInLeft gpwidth1 border rounded-left" name="">
+          <select id="userCardsLimit" class="text-center btn btn-secondary dropdown-toggle userCardsValueFormat border rounded-left" name="">
+            <option>3</option>
+            <option>6</option>
+            <option>9</option>
+            <option selected>12</option>
+            <option>15</option>
+            <option>18</option>
+            <option>21</option>
+            <option>24</option>
+            <option>27</option>
+            <option>30</option>
+          </select>
+          <select id="userDropDown" class="text-center btn btn-secondary dropdown-toggle animated slideInLeft userSearchFormat border rounded-left" name="">
             <option>Top Picks</option>
             <option>Trending</option>
             <option>Food</option>
@@ -38,26 +50,28 @@
             <option>Sights</option>
           </select>
           <label for="inputCity" class="sr-only">Input City</label>
-          <input type="text" class="animated slideInRight gpwidth border rounded-right" id="inputCity">
-          <button id="submitBtn" type="button" class="animated slideInRight btn btn-secondary">Submit</button>
+          <input type="text" class="animated slideInRight userCityFormat border rounded-right" id="inputCity">
+          <button id="submitBtn" type="button" class=" btn btn-secondary">Submit</button>
         </div>
       </form>
     </div>
-    <div class="container background">
-      <h1 class="text-center">Top Picks in the Area</h1>
-      <div>
-        <div id="activitiesDiv" class="row mx-auto scroll">
-        </div>
-      </div>
-    </div>
-    <div class="container background">
-      <div class="row ">
-        <div class="col-xs-12 text-center">
+
+    <div id="weatherDiv" class="container background">
+      <div class="row">
+        <div class="col-md-12">
           <h1 class="text-center">Weather & 5 Day Forcast</h1>
         </div>
       </div>
-      <h3 id="city"></h3>
+      <h3 id="city" class="text-center"></h3>
       <div id="forecast" class="row">
+      </div>
+    </div>
+
+    <div id="activitiesBG" class="container background">
+      <h1 id="topPicks" class="text-center">Top Picks in the Area</h1>
+      <div>
+        <div id="activitiesDiv" class="row mx-auto scroll">
+        </div>
       </div>
     </div>
   </div>

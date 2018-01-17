@@ -14,6 +14,7 @@ let userCity = "";
 let userState = "";
 let userCityandState = "";
 let userSearch = "";
+let userLimit = 12;
 var currentDate = moment().format('YYYYMMDD');
 console.log("the date is", currentDate);
 
@@ -27,6 +28,9 @@ console.log("script loading");
 
 // Hide content divs foursquare and weather
 $(".background").hide();
+$("#submitBtn").hide();
+$("#userCardsLimit").hide();
+setTimeout(showSubmitAndLimitBtn, 2500);
 
 
 // Button submit function, will remove button eventually
@@ -46,6 +50,7 @@ $("#submitBtn").on("click", function(event) {
 
   //ADDing Code --- GABE
   userSearch = $("#userDropDown").val();
+  userLimit = $("#userCardsLimit").val();
   let userTempCity = $("#inputCity").val().trim().split(", ");
   userCity = userTempCity[0]
   userState = userTempCity[1];
@@ -57,13 +62,12 @@ $("#submitBtn").on("click", function(event) {
   console.log("The user city is", userCity);
   console.log("the search state is", userState);
   console.log("The user city and state is", userCityandState);
+  console.log("The selected limit is", userLimit);
 
-  //Clearing Values
-  // $("#inputCity").val("");
 
   //AJAX Request for foursquare
   // Put foursquare query here
-  var queryURL2 = "https://api.foursquare.com/v2/venues/explore?" + "mode=url" + "&near=" + userCityandState + "&limit=12" + "&venuePhotos=1" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=" + currentDate + "&query=" + userSearch;
+  var queryURL2 = "https://api.foursquare.com/v2/venues/explore?" + "mode=url" + "&near=" + userCityandState + "&limit=" + userLimit + "&venuePhotos=1" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=" + currentDate + "&query=" + userSearch;
   $.ajax({
       url: queryURL2,
       method: "GET"
@@ -187,3 +191,8 @@ setInterval(function() {
     counter++;
   }
 }, 10000);
+
+function showSubmitAndLimitBtn(){
+  $("#submitBtn").fadeIn("milliseconds")
+  $("#userCardsLimit").fadeIn("milliseconds")
+};
