@@ -130,7 +130,7 @@ $("#submitBtn").on("click", function(event) {
           bizCard.append(bizImg, bizBlock);
           bizBlock.append(bizTitle, bizCat, bizAddy, bizRate, bizUrl);
           $("#activitiesDiv").append(bizCard);
-
+          $("#topPicks").html("<h1>"+ userSearch + " Recommendations for " + userCityandState );
         }
       });
 
@@ -216,12 +216,12 @@ $("#submitBtn").on("click", function(event) {
 var counter = 0;
 setInterval(function() {
   $("#mainImage").prop("class", "stage" + counter);
-  if (counter === 2) {
+  if (counter === 3) {
     counter = 0;
   } else {
     counter++;
   }
-}, 10000);
+}, 5000);
 
 function showSubmitAndLimitBtn() {
   $("#submitBtn").fadeIn("milliseconds")
