@@ -183,6 +183,13 @@ body:after {
   background-color: transparent;
 }
 
+/* clear bacground to divs when user hits submit with no city */
+
+.clearBackground {
+  background-color: transparent;
+  border: 0px;
+}
+
 option {
   font-size: 20px;
 }
