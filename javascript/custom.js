@@ -130,7 +130,7 @@ $("#submitBtn").on("click", function(event) {
           bizCard.append(bizImg, bizBlock);
           bizBlock.append(bizTitle, bizCat, bizAddy, bizRate, bizUrl);
           $("#activitiesDiv").append(bizCard);
-
+          $("#topPicks").html("<h1>"+ userSearch + " Recommendations for " + userCityandState );
         }
       });
 
