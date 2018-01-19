@@ -1,5 +1,5 @@
 //  Adding FB and Vars ---GABE
-let config = {
+var config = {
   apiKey: "AIzaSyDwcoCJMFHEz4FwOu0FadWtNo3tX9duiq8",
   authDomain: "travellion-1515776976948.firebaseapp.com",
   databaseURL: "https://travellion-1515776976948.firebaseio.com",
@@ -9,18 +9,18 @@ let config = {
 };
 firebase.initializeApp(config);
 
-let database = firebase.database();
-let userCity = "";
-let userState = "";
-let userCityandState = "";
-let userSearch = "";
-let userLimit = 12;
+var database = firebase.database();
+var userCity = "";
+var userState = "";
+var userCityandState = "";
+var userSearch = "";
+var userLimit = 12;
 var currentDate = moment().format('YYYYMMDD');
 console.log("the date is", currentDate);
 
 // foursquare keys
-let client_id = "PIJMX4JSYGX0LTGVJZGWQ13AOZBUJ4TDD3QJ32QR2CN1OMDN";
-let client_secret = "U0BF5HKPA54ZB4KPTDIPAZLCV3X4435YPVCBUZAZEWTKVL42";
+var client_id = "PIJMX4JSYGX0LTGVJZGWQ13AOZBUJ4TDD3QJ32QR2CN1OMDN";
+var client_secret = "U0BF5HKPA54ZB4KPTDIPAZLCV3X4435YPVCBUZAZEWTKVL42";
 //End Adding FB and Vars ---GABE
 
 // Test to ensure js loading
@@ -77,60 +77,71 @@ $("#submitBtn").on("click", function(event) {
       .done(function(response) {
         // API Object Path
         console.log(response);
-        let biz = response.response.groups[0].items;
+        var biz = response.response.groups[0].items;
+        if (response.response.groups[0].items.length > 0) {
+          for (let i = 0; i < biz.length; i++) {
+            console.log(biz[i]);
+            let bizName = biz[i].venue.name;
+            let bizRating = biz[i].venue.rating;
+            let bizNumber = "";
+            if (biz[i].venue.contact.hasOwnProperty('formattedPhone')) {
+              bizNumber = biz[i].venue.contact.formattedPhone;
+            } else {
+              bizNumber = "(No Phone Number)";
+            };
 
-        for (var i = 0; i < biz.length; i++) {
-          console.log(biz[i]);
-          var bizName = biz[i].venue.name;
-          var bizRating = biz[i].venue.rating;
-          var bizNumber = "";
-          if (biz[i].venue.contact.hasOwnProperty('formattedPhone')) {
-            bizNumber = biz[i].venue.contact.formattedPhone;
-          } else {
-            bizNumber = "(No Phone Number)";
-          };
+            let bizAddress = biz[i].venue.location.address + ",   " + biz[i].venue.location.city + ", " + biz[i].venue.location.state + ", " + biz[i].venue.location.postalCode + "<br> " + bizNumber;
+            let bizId = biz[i].venue.id;
+            let categories = biz[i].venue.categories[0].name;
+            let url = "";
+            if (biz[i].venue.hasOwnProperty('url')) {
+              url = biz[i].venue.url;
+            } else {
+              url = "";
+            };
 
-          var bizAddress = biz[i].venue.location.address + ",   " + biz[i].venue.location.city + ", " + biz[i].venue.location.state + ", " + biz[i].venue.location.postalCode + "<br> " + bizNumber;
-          var bizId = biz[i].venue.id;
-          var categories = biz[i].venue.categories[0].name;
-          var url = "";
-          if (biz[i].venue.hasOwnProperty('url')) {
-            url = biz[i].venue.url;
-          } else {
-            url = "";
-          };
-
-          var rating = biz[i].venue.rating;
+            let rating = biz[i].venue.rating;
 
 
-          // Build Venue Image Url
-          var imgPrefix = biz[i].venue.photos.groups[0].items[0].prefix;
-          var imgSize = "325x222";
-          var imgSuffix = biz[i].venue.photos.groups[0].items[0].suffix;
-          var bizImage = imgPrefix + imgSize + imgSuffix;
+            // Build Venue Image Url
+            let imgPrefix = biz[i].venue.photos.groups[0].items[0].prefix;
+            let imgSize = "325x222";
+            let imgSuffix = biz[i].venue.photos.groups[0].items[0].suffix;
+            let bizImage = imgPrefix + imgSize + imgSuffix;
 
-          let bizCard = $("<div class=card>");
-          let bizImg = $("<img class=card-img-top img-responsive>");
-          let bizBlock = $("<div class=card-block>");
-          let bizTitle = $("<h4 class=card-title>");
-          let bizCat = $("<a>");
-          let bizAddy = $("<p>");
-          let bizRate = $("<p>");
-          let bizUrl = $("<a>");
-          bizCard.css('width', '301');
-          bizImg.attr('src', bizImage);
-          bizImg.css('width', '300');
-          bizBlock.addClass('cardPadding');
-          bizTitle.html("<b>" + bizName + "</b>");
-          bizCat.html("<b>" + categories + "</b><br>");
-          bizUrl.html("<a target=\"_blank\" href=" + url + ">Website</a>");
-          bizRate.text("Rating " + rating);
-          bizAddy.addClass('addressItalic');
-          bizAddy.html(bizAddress);
-          bizCard.append(bizImg, bizBlock);
-          bizBlock.append(bizTitle, bizCat, bizAddy, bizRate, bizUrl);
-          $("#activitiesDiv").append(bizCard);
-          $("#topPicks").html("<h1>"+ userSearch + " Recommendations for " + userCityandState );
+            let bizCard = $("<div class=card>");
+            let bizImg = $("<img class=card-img-top img-responsive>");
+            let bizBlock = $("<div class=card-block>");
+            let bizTitle = $("<h4 class=card-title>");
+            let bizCat = $("<a>");
+            let bizAddy = $("<p>");
+            let bizRate = $("<p>");
+            let bizUrl = $("<a>");
+            bizCard.css('width', '301');
+            bizImg.attr('src', bizImage);
+            bizImg.css('width', '300');
+            bizBlock.addClass('cardPadding');
+            bizTitle.html("<b>" + bizName + "</b>");
+            bizCat.html("<b>" + categories + "</b><br>");
+            bizUrl.html("<a target=\"_blank\" href=" + url + ">Website</a>");
+            bizRate.text("Rating " + rating);
+            bizAddy.addClass('addressItalic');
+            bizAddy.html(bizAddress);
+            bizCard.append(bizImg, bizBlock);
+            bizBlock.append(bizTitle, bizCat, bizAddy, bizRate, bizUrl);
+            $("#activitiesDiv").append(bizCard);
+            $("#topPicks").html("<h1>" + userSearch + " Recommendations for " + userCityandState);
+          }
+        } else {
+          $('#activitiesDiv').append(`
+                <div class="col">
+                  <div class="card clearBackground ">
+                    <div class="card-block text-center">
+                      <h1>Recommendations</h1>
+                      <h4 class="noluck">Ooooo, You must be in one of those Remote Towns. There are no ${userSearch} recommdations in ${userCityandState}. But here's the weather. Try another search category.</h4>
+                    </div>
+                  </div>
+                </div>`);
         }
       });
 
@@ -138,7 +149,7 @@ $("#submitBtn").on("click", function(event) {
     let lat = "";
     let long = "";
     let cityName = userCityandState;
-    let queryURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22" +
+    var queryURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22" +
       cityName + "%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
     $.ajax({
@@ -149,10 +160,10 @@ $("#submitBtn").on("click", function(event) {
         console.log(queryURL);
         console.log(response);
 
-        let weather = response.query.results.channel;
-        let weatherCity = weather.location.city;
-        let weatherRegion = weather.location.region;
-        let icon = "<img src='http://l.yimg.com/a/i/us/we/52/" + response.query.results.channel.item.condition.code + ".gif'>"
+        var weather = response.query.results.channel;
+        var weatherCity = weather.location.city;
+        var weatherRegion = weather.location.region;
+        var icon = "<img src='http://l.yimg.com/a/i/us/we/52/" + response.query.results.channel.item.condition.code + ".gif'>"
         lat = response.query.results.channel.item.lat;
         long = response.query.results.channel.item.long;
         console.log(lat);
@@ -198,7 +209,7 @@ $("#submitBtn").on("click", function(event) {
       <div class="col">
         <div class="card clearBackground">
           <div class="card-block text-center">
-            <h4>Please enter a US City</h4>
+            <h4>Please enter a US City to see Weather</h4>
           </div>
         </div>
       </div>`);
@@ -206,7 +217,8 @@ $("#submitBtn").on("click", function(event) {
         <div class="col">
           <div class="card clearBackground ">
             <div class="card-block text-center">
-              <h4>Please enter a US City</h4>
+              <h1>Recommendations</h1>
+              <h4>Please enter a US City to see Recommendations</h4>
             </div>
           </div>
         </div>`);
