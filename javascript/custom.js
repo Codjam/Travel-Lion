@@ -24,7 +24,7 @@ var client_secret = "U0BF5HKPA54ZB4KPTDIPAZLCV3X4435YPVCBUZAZEWTKVL42";
 //End Adding FB and Vars ---GABE
 
 // Test to ensure js loading
-console.log("script loading");
+// console.log("script loading");
 
 // Hide content divs foursquare and weather
 $(".background").hide();
@@ -42,7 +42,7 @@ $("#submitBtn").on("click", function(event) {
   $("#activitiesDiv").empty();
 
   // Test button works
-  console.log("button works");
+  // console.log("button works");
 
   // Show divs for weather and foursquare content
   $(".background").show();
@@ -80,7 +80,7 @@ $("#submitBtn").on("click", function(event) {
         var biz = response.response.groups[0].items;
         if (response.response.groups[0].items.length > 0) {
           for (let i = 0; i < biz.length; i++) {
-            console.log(biz[i]);
+            // console.log(biz[i]);
             let bizName = biz[i].venue.name;
             let bizRating = biz[i].venue.rating;
             let bizNumber = "";
@@ -99,7 +99,6 @@ $("#submitBtn").on("click", function(event) {
             } else {
               url = "";
             };
-
             let rating = biz[i].venue.rating;
 
 
@@ -110,6 +109,7 @@ $("#submitBtn").on("click", function(event) {
             let bizImage = imgPrefix + imgSize + imgSuffix;
 
             let bizCard = $("<div class=card>");
+            let imageShadow = $("<div class=shadow>")
             let bizImg = $("<img class=card-img-top img-responsive>");
             let bizBlock = $("<div class=card-block>");
             let bizTitle = $("<h4 class=card-title>");
@@ -118,6 +118,8 @@ $("#submitBtn").on("click", function(event) {
             let bizRate = $("<p>");
             let bizUrl = $("<a>");
             bizCard.css('width', '301');
+            bizCard.data("venueid", bizId);
+            bizCard.addClass("cardLaunch");
             bizImg.attr('src', bizImage);
             bizImg.css('width', '300');
             bizBlock.addClass('cardPadding');
@@ -127,7 +129,7 @@ $("#submitBtn").on("click", function(event) {
             bizRate.text("Rating " + rating);
             bizAddy.addClass('addressItalic');
             bizAddy.html(bizAddress);
-            bizCard.append(bizImg, bizBlock);
+            bizCard.append(imageShadow,bizImg, bizBlock);
             bizBlock.append(bizTitle, bizCat, bizAddy, bizRate, bizUrl);
             $("#activitiesDiv").append(bizCard);
             $("#topPicks").html("<h1>" + userSearch + " Recommendations for " + userCityandState);
@@ -157,7 +159,6 @@ $("#submitBtn").on("click", function(event) {
         method: "GET"
       })
       .done(function(response) {
-        console.log(queryURL);
         console.log(response);
 
         var weather = response.query.results.channel;
@@ -166,8 +167,8 @@ $("#submitBtn").on("click", function(event) {
         var icon = "<img src='http://l.yimg.com/a/i/us/we/52/" + response.query.results.channel.item.condition.code + ".gif'>"
         lat = response.query.results.channel.item.lat;
         long = response.query.results.channel.item.long;
-        console.log(lat);
-        console.log(long);
+        // console.log(lat);
+        // console.log(long);
 
         $('#city').text(response.query.results.channel.location.city + ", " + response.query.results.channel.location.region);
 
@@ -224,6 +225,40 @@ $("#submitBtn").on("click", function(event) {
         </div>`);
   }
 });
+
+$(document).on("click", ".cardLaunch", function(){
+var venueID = $(this).data("venueid");
+console.log(venueID);
+
+var queryURL3 = "https://api.foursquare.com/v2/venues/" + venueID + "/similar?" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=" + currentDate;
+$.ajax({
+    url: queryURL3,
+    method: "GET"
+  })
+  .done(function(response) {
+    console.log(response);
+
+
+});
+
+var queryURL4 = "https://api.foursquare.com/v2/venues/" + venueID + "?" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=" + currentDate;
+$.ajax({
+    url: queryURL4,
+    method: "GET"
+  })
+  .done(function(response) {
+    console.log(response);
+});
+
+
+
+
+
+
+});
+
+
+
 
 var counter = 0;
 setInterval(function() {
