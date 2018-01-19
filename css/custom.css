@@ -212,3 +212,11 @@ h1, h3 {
   font-weight: 600;
   background-color: transparent;
 }
+
+.noluck {
+  font-weight: bold;
+  color: black;
+  font-size: 22px;
+  background-color: white;
+
+}
