@@ -173,10 +173,18 @@ $("#submitBtn").on("click", function(event) {
         $('#city').text(response.query.results.channel.location.city + ", " + response.query.results.channel.location.region);
 
         for (i = 0; i < 6; i++) {
+          let code = response.query.results.channel.item.forecast[i].code;
+          let day = response.query.results.channel.item.forecast[i].day;
+          let highTemp =  response.query.results.channel.item.forecast[i].high;
+          let lowTemp =  response.query.results.channel.item.forecast[i].low;
+          let condition = response.query.results.channel.item.forecast[i].text;
           let div = $("<div class=col>");
           let cardDiv = $("<div class=card>");
           let cardBlock = $("<div class=card-block>");
           let icon = $("<img>");
+          if (i === 0){
+           day = "Today";
+          };
 
           div.attr("id", "forecast-day" + i);
           div.attr("class", "forecast col");
@@ -189,7 +197,7 @@ $("#submitBtn").on("click", function(event) {
           div.append(cardDiv);
           cardDiv.append(cardBlock);
           cardBlock.append(icon);
-          cardBlock.append("<br>" + response.query.results.channel.item.forecast[i].day + "<br>" + response.query.results.channel.item.forecast[i].high + "&#8457" + "<br>" + response.query.results.channel.item.forecast[i].text);
+          cardBlock.append("<br>" + day + "  "  + highTemp + " /" + lowTemp + "&#8457" + "<br>" +condition);
           $('#forecast').append(div);
         }
       });
@@ -226,9 +234,21 @@ $("#submitBtn").on("click", function(event) {
   }
 });
 
+
+var modal = document.getElementById('myModal');
+// Get the button that opens the modal
+// var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+
+
+// *******************************************************************************
 $(document).on("click", ".cardLaunch", function(){
+  modal.style.display = "block";
 var venueID = $(this).data("venueid");
 console.log(venueID);
+
 
 var queryURL3 = "https://api.foursquare.com/v2/venues/" + venueID + "/similar?" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=" + currentDate;
 $.ajax({
@@ -238,26 +258,348 @@ $.ajax({
   .done(function(response) {
     console.log(response);
 
+    var simPlaces = response.response.similarVenues;
 
+
+
+    for (let i = 0; i < 4; i++) {
+      let simName = simPlaces.items[i].name;
+      // let simRating = biz[i].venue.rating;
+      let simNumber = "";
+      if (simPlaces.items[i].contact.hasOwnProperty('formattedPhone')) {
+        simNumber = simPlaces.items[i].contact.formattedPhone;
+      } else {
+        simNumber = "(No Phone Number)";
+      };
+
+      let simAddress = simPlaces.items[i].location.address + "," + simPlaces.items[i].location.city + ", " + simPlaces.items[i].location.state + ", " + simPlaces.items[i].location.postalCode + "<br> " + simNumber;
+      // let simId = biz[i].venue.id;
+      // let categories = biz[i].venue.categories[0].name;
+      let url = "";
+      if (simPlaces.items[i].hasOwnProperty('url')) {
+        url = simPlaces.items[i].url;
+      } else {
+        url = "";
+      };
+      // let rating = sim[i].venue.rating;
+      // // Build Venue Image Url
+      // let simImgPrefix = biz[i].venue.photos.groups[0].items[0].prefix;
+      // let simImgSize = "325x222";
+      // let simImgSuffix = biz[i].venue.photos.groups[0].items[0].suffix;
+      $("#similar").append(`
+        <div class="col card">
+          <div class="card-block">
+          <div>
+            ${simName}<br>
+            ${simAddress}<br><br>
+            <a href="${url}">Website</a>
+            </div>
+          </div>
+        </div>
+      `)
+    }
 });
 
 var queryURL4 = "https://api.foursquare.com/v2/venues/" + venueID + "?" + "&client_id=" + client_id + "&client_secret=" + client_secret + "&v=" + currentDate;
 $.ajax({
-    url: queryURL4,
-    method: "GET"
-  })
-  .done(function(response) {
-    console.log(response);
+  url: queryURL4,
+  method: "GET"
+})
+.done(function(response) {
+  console.log(response);
+
+    var venueClicked = response.response.venue;
+    let venueName = venueClicked.name;
+    let venueRating = venueClicked.rating;
+    let venueNumber = "";
+    if (venueClicked.contact.hasOwnProperty('formattedPhone')) {
+        venueNumber = venueClicked.contact.formattedPhone;
+      } else {
+        venueNumber = "(No Phone Number)";
+    };
+
+    let venueAddress = venueClicked.location.address + ",   " + venueClicked.location.city + ", " + venueClicked.location.state + ", " + venueClicked.location.postalCode + "<br> " + venueNumber;
+    // let bizId = biz[i].venue.id;
+    let categories = venueClicked.categories[0].name;
+    // let hours = venueClicked.hours.status;
+    let url = "";
+    if (venueClicked.hasOwnProperty('url')) {
+        url = venueClicked.url;
+      } else {
+        url = "";
+    };
+    let rating = venueClicked.rating;
+
+    // Build Venue Image Url
+    let imgPrefix = venueClicked.photos.groups[0].items[0].prefix;
+    let imgSize = "500x500";
+    let imgSuffix = venueClicked.photos.groups[0].items[0].suffix;
+    let venueImage = imgPrefix + imgSize + imgSuffix;
+
+    var venueTips = response.response.venue.tips.groups[0];
+    for (var i = 0; i < 4; i++) {
+
+      let userTipsText = venueTips.items[i].text;
+      let userTipperFirstName = venueTips.items[i].user.firstName;
+      let userTipperLastName = "";
+      if (venueTips.items[i].user.hasOwnProperty('lastName')) {
+        userTipperLastName = venueTips.items[i].user.lastName;
+      } else {
+        userTipperLastName = "";
+      };
+      let userTipperName = userTipperFirstName + " " + userTipperLastName;
+      let userTipPhotoPrefix = response.response.venue.tips.groups["0"].items[i].user.photo.prefix;
+      let userTipPhotoSize = "35x35";
+      let userTipPhotoSuffix = response.response.venue.tips.groups["0"].items[i].user.photo.suffix;
+      let userTipPhoto = userTipPhotoPrefix + userTipPhotoSize + userTipPhotoSuffix;
+      var venueLat = venueClicked.location.lat;
+      var venueLng = venueClicked.location.lng;
+      $("#userTips").append(`
+        <div class="card">
+          <div class="card-block">
+          <div>
+          </div>
+          <span><img src="${userTipPhoto}" alt="">
+            ${userTipperName}</span> <br><br>
+            ${userTipsText} <br> <br>
+            </div>
+          </div>
+      `)
+    }
+
+    $("#cardClickedShow").append(`
+      <div class="card-img-top img-responsive">
+        <img src="${venueImage}" alt="">
+      </div>
+      <div class="card-block">
+        <div class="card-title">
+          ${categories} <br>
+          ${venueName} <br>${venueAddress}
+          <br>Rating: ${rating}
+          <br><a href="${url}">Website</a>
+        </div>
+      </div>
+    `);
+
+    windowAppear(venueLat,venueLng,5);
+  });
+// });
+
+
+
+
+// <br>${hours}
+
+
+
+//
+function windowAppear(lat, lng, radius){
+ // $(".eventDiv").remove();
+ // $(".close").append('<div class= "row eventDiv"></div>');
+
+ var app_key = '4NhTP97rgMpjW6Tr';
+
+ var futureMonth = moment(currentDate).add(1, 'M');
+ futureMonth = moment(futureMonth).format('YYYYMMDD' + "00");
+ currentDate =  moment().format('YYYYMMDD' + "00");
+ var placeLocation = (lat + ',' + lng);
+ console.log(placeLocation);
+ var oArgs = {
+    app_key: app_key,
+    q: "",
+    where:  (placeLocation),
+    within: radius,
+    "date": currentDate + "-" + futureMonth,
+    "include": "tags,categories",
+    page_size: 4,
+    sort_order: "popularity",
+ };
+ EVDB.API.call("/events/search", oArgs, function(response) {
+
+     console.log(response);
+
+    let event = response.events.event;
+     console.log("Event " + event[0].city_name);
+    for (i = 0; i < event.length; i++){
+
+     let eventName = event[i].title;
+     let eventAddress = event[i].venue_address + ",   " + event[i].venue_name + ",   " + event[i].city_name +
+      ", " + event[i].region_abbr + ", " + event[i].postal_code;
+     var eventDate = event[i].start_time;
+     // Build Venue Image Url
+
+     let eventImageUrl = event[i].image.medium.url;
+     console.log(eventImageUrl);
+
+     let eventCard = $("<div class=card-event row>");
+     let eventImg = $("<img class=card-img>");
+     let eventBlock = $("<div class=card-block>");
+     let eventTitle = $("<h5 class= event-title card-title>");
+     let eventCat = $("<a>");
+     let eventAddy = $("<p>");
+     let eventDay = $("<p class = event-day>");
+     //let bizUrl = $("<a>");
+     eventCard.css('width', '201');
+     eventCard.css('high', '201');
+     eventImg.attr('src', eventImageUrl);
+     eventImg.css('width', '200');
+     eventImg.css('high', '201');
+     eventBlock.addClass('cardPadding');
+     eventTitle.html("<b>" + eventName + "</b>");
+     eventAddy.addClass('addressItalic eventClass');
+     eventDay.text("Date: " + eventDate);
+     eventAddy.html(eventAddress);
+     eventCard.append(eventImg, eventBlock);
+     eventBlock.append(eventTitle, eventAddy, eventDay);
+     $("#liveEvents").append(eventCard);
+
+    }
+
+  });
+
+
+  modal.style.display = "block";
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
+span.onclick = function() {
+    modal.style.display = "none";
 
+    $("#cardClickedShow").empty();
+    $("#userTips").empty();
+    $("#similar").empty();
+    $("#liveEvents").empty();
+}
 
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
 
-
-
-});
-
-
+        $("#cardClickedShow").empty();
+        $("#userTips").empty();
+        $("#similar").empty();
+        $("#liveEvents").empty();
+    }
+}
 
 
 var counter = 0;
