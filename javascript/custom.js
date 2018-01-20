@@ -27,7 +27,7 @@ var client_secret = "U0BF5HKPA54ZB4KPTDIPAZLCV3X4435YPVCBUZAZEWTKVL42";
 // console.log("script loading");
 
 // Hide content divs foursquare and weather
-$(".background").hide();
+// $(".background").hide();
 $("#submitBtn").hide();
 $("#userCardsLimit").hide();
 setTimeout(showSubmitAndLimitBtn, 1000);
@@ -45,7 +45,11 @@ $("#submitBtn").on("click", function(event) {
   // console.log("button works");
 
   // Show divs for weather and foursquare content
-  $(".background").show();
+  // $(".background").show();
+
+  $(".background").css({
+     "visibility": "visible"
+});
 
   if ($("#inputCity").val()) {
 
