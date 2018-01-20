@@ -287,7 +287,8 @@ $.ajax({
       // let simImgSize = "325x222";
       // let simImgSuffix = biz[i].venue.photos.groups[0].items[0].suffix;
       $("#similar").append(`
-        <div class="col card">
+        <div class=" col-md-3 ">
+        <div class="card">
           <div class="card-block">
           <div>
             ${simName}<br>
@@ -295,6 +296,7 @@ $.ajax({
             <a href="${url}"target="_blank">Website</a>
             </div>
           </div>
+        </div>
         </div>
       `)
     }
