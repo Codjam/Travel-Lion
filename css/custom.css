@@ -290,3 +290,20 @@ h1, h3 {
 .weatherBackground {
   background-color: #878e95;
 }
+
+.eventImage{
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+
+}
+
+.cardEvent{
+  width: 200px;
+  height: 230px;
+}
+
+
+.gpbg1{
+  background-color: black;
+}
