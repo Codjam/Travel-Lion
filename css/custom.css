@@ -36,7 +36,7 @@ body {
 }
 
 .background {
-  background-color: rgba(247, 248, 249, .9);
+  background-color: rgba(247, 248, 249, .8);
   border-radius: 5px;
   margin-top: 2em;
   margin-bottom: 2em;
@@ -50,6 +50,9 @@ body {
   text-align: center;
   padding-top: 5rem;
   padding-bottom: 3rem;
+  -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: rgba(247, 248, 249, .9);
+  font-weight: 500;
 }
 
 .footer {
@@ -62,8 +65,8 @@ body {
 
 body:after {
   display: none;
-  /* content: url("../assets/images/seattle.jpeg") url("../assets/images/sanfran.jpeg") url("../assets/images/newyork.jpeg") */
-  content: url("../assets/images/newyork1.jpg") url("../assets/images/beach.jpg") url("../assets/images/city.jpg") url("../assets/images/ireland.jpg")
+  content: url("../assets/images/seattle.jpeg") url("../assets/images/sanfran.jpeg") url("../assets/images/newyork.jpeg")
+  /* content: url("../assets/images/newyork1.jpg") url("../assets/images/beach.jpg") url("../assets/images/city.jpg") url("../assets/images/ireland.jpg") */
 }
 
 @keyframes fadeIn {
@@ -76,8 +79,8 @@ body:after {
 }
 
 .stage0 {
-  /* background-image: url("../assets/images/seattle.jpeg"); */
-  background-image: url("../assets/images/newyork1.jpg");
+  background-image: url("../assets/images/seattle.jpeg");
+  /* background-image: url("../assets/images/newyork1.jpg"); */
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -145,7 +148,7 @@ body:after {
 .addressItalic {
   font-style: italic;
   padding-top: 5px;
-  color: blue;
+  color: #4c4c4c;
 }
 
 .cardPadding {
@@ -168,6 +171,7 @@ body:after {
   height: 45px;
   position: relative;
   left: 2px;
+  margin-right: 8px;
 }
 
 .userCardsValueFormat {
@@ -185,7 +189,7 @@ body:after {
 }
 
 #submitBtn:hover {
-  background-color: blue;
+  background-color: #4c4c4c;
 }
 
 #activitiesBG {
@@ -273,4 +277,16 @@ h1, h3 {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.weatherHeadline1 {
+  font-size: 24px !important;
+}
+
+.weatherHeadline2 {
+  font-size: 18px !important;
+}
+
+.weatherBackground {
+  background-color: #878e95;
 }

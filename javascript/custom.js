@@ -30,7 +30,7 @@ var client_secret = "U0BF5HKPA54ZB4KPTDIPAZLCV3X4435YPVCBUZAZEWTKVL42";
 $(".background").hide();
 $("#submitBtn").hide();
 $("#userCardsLimit").hide();
-setTimeout(showSubmitAndLimitBtn, 2500);
+setTimeout(showSubmitAndLimitBtn, 1000);
 
 
 // Button submit function, will remove button eventually
@@ -125,7 +125,7 @@ $("#submitBtn").on("click", function(event) {
             bizBlock.addClass('cardPadding');
             bizTitle.html("<b>" + bizName + "</b>");
             bizCat.html("<b>" + categories + "</b><br>");
-            bizUrl.html("<a target=\"_blank\" href=" + url + ">Website</a>");
+            // bizUrl.html("<a target=\"_blank\" href=" + url + ">Website</a>");
             bizRate.text("Rating " + rating);
             bizAddy.addClass('addressItalic');
             bizAddy.html(bizAddress);
@@ -171,7 +171,7 @@ $("#submitBtn").on("click", function(event) {
         // console.log(long);
 
         $('#city').text(response.query.results.channel.location.city + ", " + response.query.results.channel.location.region);
-
+        $('#city').addClass("weatherHeadline2");
         for (i = 0; i < 6; i++) {
           let code = response.query.results.channel.item.forecast[i].code;
           let day = response.query.results.channel.item.forecast[i].day;
@@ -488,17 +488,17 @@ window.onclick = function(event) {
 }
 
 
-var counter = 0;
-setInterval(function() {
-  $("#mainImage").prop("class", "stage" + counter);
-  if (counter === 3) {
-    counter = 0;
-  } else {
-    counter++;
-  }
-}, 5000);
+// var counter = 0;
+// setInterval(function() {
+//   $("#mainImage").prop("class", "stage" + counter);
+//   if (counter === 3) {
+//     counter = 0;
+//   } else {
+//     counter++;
+//   }
+// }, 5000);
 
 function showSubmitAndLimitBtn() {
-  $("#submitBtn").fadeIn("milliseconds")
-  $("#userCardsLimit").fadeIn("milliseconds")
+  $("#submitBtn").fadeIn(1000);
+  $("#userCardsLimit").fadeIn(1000);
 };
