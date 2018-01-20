@@ -292,7 +292,7 @@ $.ajax({
           <div>
             ${simName}<br>
             ${simAddress}<br><br>
-            <a href="${url}">Website</a>
+            <a href="${url}"target="_blank">Website</a>
             </div>
           </div>
         </div>
@@ -376,7 +376,7 @@ $.ajax({
           ${categories} <br>
           ${venueName} <br>${venueAddress}
           <br>Rating: ${rating}
-          <br><a href="${url}">Website</a>
+          <br><a href="${url}"target="_blank">Website</a>
         </div>
       </div>
     `);
@@ -460,122 +460,6 @@ function windowAppear(lat, lng, radius){
 
   modal.style.display = "block";
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
