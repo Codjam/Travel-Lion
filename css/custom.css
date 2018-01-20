@@ -40,6 +40,8 @@ body {
   border-radius: 5px;
   margin-top: 2em;
   margin-bottom: 2em;
+  visibility: hidden;
+
 }
 
 .form-group {
