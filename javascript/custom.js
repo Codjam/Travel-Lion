@@ -259,6 +259,11 @@ $.ajax({
     console.log(response);
 
     var simPlaces = response.response.similarVenues;
+    $("#similarNameSlogan").append(`
+      <div class=" col">
+      <h3 class="text-center">Similar Venues</h3>
+      </div>
+      `);
 
 
 
@@ -413,7 +418,7 @@ function windowAppear(lat, lng, radius){
     within: radius,
     "date": currentDate + "-" + futureMonth,
     "include": "tags,categories",
-    page_size: 4,
+    page_size: 5,
     sort_order: "popularity",
  };
  EVDB.API.call("/events/search", oArgs, function(response) {
@@ -422,39 +427,32 @@ function windowAppear(lat, lng, radius){
 
     let event = response.events.event;
      console.log("Event " + event[0].city_name);
+     $("#eventsNameSlogan").append(`
+       <div class=" col">
+       <h3 class="text-center">Live Events</h3>
+       </div>
+       `);
     for (i = 0; i < event.length; i++){
 
      let eventName = event[i].title;
      let eventAddress = event[i].venue_address + ",   " + event[i].venue_name + ",   " + event[i].city_name +
       ", " + event[i].region_abbr + ", " + event[i].postal_code;
-     var eventDate = event[i].start_time;
+     var eventDate = moment(event[i].start_time).format('lll');
      // Build Venue Image Url
-
      let eventImageUrl = event[i].image.medium.url;
      console.log(eventImageUrl);
-
-     let eventCard = $("<div class=card-event row>");
-     let eventImg = $("<img class=card-img>");
-     let eventBlock = $("<div class=card-block>");
-     let eventTitle = $("<h5 class= event-title card-title>");
-     let eventCat = $("<a>");
-     let eventAddy = $("<p>");
-     let eventDay = $("<p class = event-day>");
-     //let bizUrl = $("<a>");
-     eventCard.css('width', '201');
-     eventCard.css('high', '201');
-     eventImg.attr('src', eventImageUrl);
-     eventImg.css('width', '200');
-     eventImg.css('high', '201');
-     eventBlock.addClass('cardPadding');
-     eventTitle.html("<b>" + eventName + "</b>");
-     eventAddy.addClass('addressItalic eventClass');
-     eventDay.text("Date: " + eventDate);
-     eventAddy.html(eventAddress);
-     eventCard.append(eventImg, eventBlock);
-     eventBlock.append(eventTitle, eventAddy, eventDay);
-     $("#liveEvents").append(eventCard);
-
+     $("#liveEvents").append(`
+       <div class=" card row">
+         <div class="card-img-top gpbg1 ">
+           <img src="${eventImageUrl}" class="img-responsive eventImage" alt="">
+         </div>
+         <div class="card-block cardEvent">
+           <h5 class="event-title card-title">${eventName}</h5>
+           <p>${eventAddress}</p>
+           <p class="event-day">${eventDate}</p>
+         </div>
+       </div>
+       `)
     }
 
   });
@@ -473,6 +471,8 @@ span.onclick = function() {
     $("#userTips").empty();
     $("#similar").empty();
     $("#liveEvents").empty();
+    $("#similarNameSlogan").empty();
+    $("#eventsNameSlogan").empty();
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -484,6 +484,9 @@ window.onclick = function(event) {
         $("#userTips").empty();
         $("#similar").empty();
         $("#liveEvents").empty();
+        $("#similarNameSlogan").empty();
+        $("#eventsNameSlogan").empty();
+
     }
 }
 
