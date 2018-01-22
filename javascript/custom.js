@@ -235,6 +235,7 @@ $("#submitBtn").on("click", function(event) {
                     <div class="card-block text-center">
                     <h4>Please enter a US City to see Weather</h4>
                   </div>
+
                 </div>
              </div>
             `);
@@ -242,6 +243,7 @@ $("#submitBtn").on("click", function(event) {
             <div class="col">
              <div class="card">
               <div class="card-block text-center">
+
               <h1>Recommendations</h1>
               <h4>Please enter a US City to see Recommendations</h4>
             </div>
@@ -397,6 +399,7 @@ $(document).on("click", ".cardLaunch", function() {
                 <br>Rating: ${rating}
                 <br><a href="${url}"target="_blank">Website</a>
               </div>
+
             </div>
           `);
     // Calling funtion that sets the events miles and radius for ticketmaster
@@ -467,6 +470,7 @@ $(document).on("click", ".cardLaunch", function() {
         });
       };
     // End of Ticketmaster Ajax Request
+
 
 
     $(document).on("click", "#moreEvents", function() {
