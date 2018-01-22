@@ -1,0 +1,374 @@
+.mainImage {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* width:100%;
+    height:100%; */
+  transition: background-image 1.5s ease;
+  font-family: 'Roboto', sans-serif;
+  background-size: cover;
+  position: relative;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+
+.mainBody {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: scroll;
+}
+
+html, body {
+  position: relative;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow: auto;
+}
+
+.background {
+  background-color: rgba(247, 248, 249, .8);
+  border-radius: 5px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  visibility: hidden;
+
+}
+
+.form-group {
+  padding-bottom: 1rem;
+}
+
+.headline {
+  text-align: center;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+  -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: rgba(247, 248, 249, .9);
+  font-weight: 500;
+}
+
+.headline-word{
+  /*transition: 2s;*/
+  font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-color: linear-gradient(to right, #7ed56f, #28b485);
+    display: inline-block;
+    /*background-image: -webkit-gradient(linear, left top, right top, from(#7ed56f), to(#28b485));*/
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: .2rem;
+    /*-webkit-transition: all .2s;*/
+    transition: all .7s;
+}
+
+.headline-word:hover{
+  transform: skewX(30deg);
+}
+
+/*.slogan{
+  border-color: black
+  animation: bounceOut
+}*/
+
+/*.slogan:hover{
+  border-color: black
+  animation: bounceOut*/
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  /* height:20px;  */
+  text-align: left;
+  margin-left: 9rem;
+}
+
+body:after {
+  display: none;
+  content: url("../assets/images/seattle.jpeg") url("../assets/images/sanfran.jpeg") url("../assets/images/newyork.jpeg")
+  /* content: url("../assets/images/newyork1.jpg") url("../assets/images/beach.jpg") url("../assets/images/city.jpg") url("../assets/images/ireland.jpg") */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.stage0 {
+  background-image: url("../assets/images/seattle.jpeg");
+  /* background-image: url("../assets/images/newyork1.jpg"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.stage1 {
+  /* background-image: url("../assets/images/sanfran.jpeg"); */
+  background-image: url("../assets/images/beach.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.stage2 {
+  /* background-image: url("../assets/images/newyork.jpeg"); */
+  background-image: url("../assets/images/city.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.stage3 {
+  /* background-image: url("../assets/images/newyork.jpeg"); */
+  background-image: url("../assets/images/ireland.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+.tlmargin {
+  margin: 0, auto;
+}
+
+.imgMargin {
+  margin-bottom: 1em;
+}
+
+.cardWeather {
+  margin: 1em;
+  padding: 1em;
+}
+
+.card {
+  margin: 0 auto;
+  /* Added */
+  float: none;
+  /* Added */
+  margin-bottom: 15px;
+  /* Added */
+}
+
+.card2 {
+  margin: 0 auto;
+  /* Added */
+  float: none;
+  /* Added */
+  padding-bottom: 0px;
+  /* Added */
+  height: 150px;
+  width: 160px;
+  margin-bottom: 15px;
+}
+
+.card3 {
+  background-color: #a4b6c5;
+  font-size: 12px;
+  opacity: 0.9;
+  border: 0;
+}
+
+.forecast {
+  padding: 0;
+}
+.addressItalic {
+  font-style: italic;
+  padding-top: 5px;
+  color: #4c4c4c;
+}
+
+.cardPadding {
+  padding: 5px;
+}
+
+.userCityFormat {
+  width: 300px;
+  height: 46px;
+  padding-left: 10px;
+  font-style: italic;
+  position: relative;
+  /*bottom: 5px;
+  right: 10px;*/
+  font-size: 16px;
+}
+
+.userSearchFormat {
+  width: 300px;
+  height: 45px;
+  position: relative;
+  left: 2px;
+  margin-right: 8px;
+}
+
+.userCardsValueFormat {
+  width: 70px;
+  height: 45px;
+  position: relative;
+  left: 2px;
+  border-left: 0px;
+}
+
+#submitBtn {
+  height: 43px;
+  position: relative;
+  right: -3px;
+  display: inline-block;
+  color: #fff;
+  background-color: #7c7c7c;
+  text-decoration: none;
+  /*padding: 1rem 2rem;*/
+  /*border: #fff; 1px solid;*/
+  /*margin-top: 30px;*/
+  opacity: 200;
+  animation-name: btn;
+  animation-duration: 3s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+  transition-property: transform;
+  transition-duration: 1s;
+}
+
+#submitBtn:hover {
+
+  background-color: #008000;
+  transform: rotateY(360deg);
+
+  background-color: #008000;
+
+}
+
+
+#activitiesBG {
+  background-color: transparent;
+}
+
+#weatherDiv {
+  background-color: transparent;
+}
+
+/* clear bacground to divs when user hits submit with no city */
+
+.clearBackground {
+  background-color: transparent;
+  border: 0px;
+}
+
+option {
+  font-size: 20px;
+}
+
+h1, h3 {
+  color: black;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+.noluck {
+  font-weight: bold;
+  color: black;
+  font-size: 22px;
+  background-color: white;
+}
+
+.shadow{
+	position: absolute;
+	top:0;
+	width:100%;
+	height: 100%;
+}
+.shadow:hover{
+   -moz-box-shadow:    inset 0 0 100px #000000;
+   -webkit-box-shadow: inset 0 0 100px #000000;
+   box-shadow:         inset 0 0 100px #000000;
+   transition: .5s;
+}
+
+
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.weatherHeadline1 {
+  font-size: 24px !important;
+}
+
+.weatherHeadline2 {
+  font-size: 18px !important;
+}
+
+.weatherBackground {
+  background-color: #878e95;
+}
+
+.eventImage{
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+
+}
+
+.cardEvent{
+  width: 200px;
+  height: 230px;
+}
+
+
+.gpbg1{
+  background-color: black;
+}
