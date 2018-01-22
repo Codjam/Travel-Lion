@@ -179,6 +179,16 @@ body:after {
   margin-bottom: 15px;
 }
 
+.card3 {
+  background-color: #a4b6c5;
+  font-size: 12px;
+  opacity: 0.9;
+  border: 0;
+}
+
+.forecast {
+  padding: 0;
+}
 .addressItalic {
   font-style: italic;
   padding-top: 5px;
