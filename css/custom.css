@@ -147,6 +147,9 @@ body:after {
   margin-bottom: 15px;
 }
 
+.card3 {
+  background-color: #85848d;
+}
 .addressItalic {
   font-style: italic;
   padding-top: 5px;
