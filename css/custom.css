@@ -15,6 +15,10 @@
   height: 100%;
 }
 
+
+
+
+
 .mainBody {
   height: 100%;
   width: 100%;
@@ -51,6 +55,34 @@ body {
   padding-top: 5rem;
   padding-bottom: 3rem;
 }
+
+.headline-word{
+  /*transition: 2s;*/
+  font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    /*background-image: -webkit-gradient(linear, left top, right top, from(#7ed56f), to(#28b485));*/
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: .2rem;
+    /*-webkit-transition: all .2s;*/
+    transition: all .7s;
+}
+
+.headline-word:hover{
+  transform: skewX(30deg);
+}
+
+/*.slogan{
+  border-color: black
+  animation: bounceOut
+}*/
+
+/*.slogan:hover{
+  border-color: black
+  animation: bounceOut*/
 
 .footer {
   position: absolute;
@@ -158,8 +190,8 @@ body:after {
   padding-left: 10px;
   font-style: italic;
   position: relative;
-  bottom: 5px;
-  right: 10px;
+  /*bottom: 5px;
+  right: 10px;*/
   font-size: 16px;
 }
 
@@ -182,11 +214,27 @@ body:after {
   height: 43px;
   position: relative;
   right: -3px;
+  display: inline-block;
+  color: #fff;
+  background-color: #12475f;
+  text-decoration: none;
+  /*padding: 1rem 2rem;*/
+  border: #fff; 1px solid;
+  /*margin-top: 30px;*/
+  opacity: 200;
+  animation-name: btn;
+  animation-duration: 3s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+  transition-property: transform;
+  transition-duration: 1s;
 }
 
 #submitBtn:hover {
-  background-color: blue;
+  background-color: #19bb2c;
+  transform: rotateY(360deg);
 }
+
 
 #activitiesBG {
   background-color: transparent;
