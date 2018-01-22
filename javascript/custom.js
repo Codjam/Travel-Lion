@@ -484,7 +484,6 @@ $(document).on("click", ".cardLaunch", function() {
         modal.style.display = "block";
         windowAppear(30, 30);
     })
-
 });
 // ************************** End Card Click Function**************************************************************************
 
