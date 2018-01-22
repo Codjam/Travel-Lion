@@ -147,6 +147,26 @@ body:after {
   margin-bottom: 15px;
 }
 
+.bizImageFormat{
+  width: 300px;
+}
+
+.bizCardFormat{
+  width: 301px;
+}
+
+.liveEventCardFormat{
+  width: 221px;
+  height: 220px;
+}
+
+.eventImage{
+  width: 220px;
+  height: 180px;
+  border: 1px solid black;
+
+}
+
 .addressItalic {
   font-style: italic;
   padding-top: 5px;
@@ -156,6 +176,14 @@ body:after {
 .cardPadding {
   padding: 5px;
 }
+
+.card-block h5{
+  font-weight:bold;
+}
+.card-block h6{
+  font-weight:bold;
+}
+
 
 .userCityFormat {
   width: 300px;
@@ -291,21 +319,4 @@ h1, h3 {
 
 .weatherBackground {
   background-color: #878e95;
-}
-
-.eventImage{
-  width: 200px;
-  height: 200px;
-  border: 1px solid black;
-
-}
-
-.cardEvent{
-  width: 200px;
-  height: 230px;
-}
-
-
-.gpbg1{
-  background-color: black;
 }
