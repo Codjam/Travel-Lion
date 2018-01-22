@@ -19,7 +19,7 @@
 <body class="mainImage">
   <div class="mainBody stage0">
 
-
+    <!-- User dropdown and input boxes -->
     <div class="container" id="inputDiv">
       <h1 class="headline animated slideInDown">Hello, where would you like to travel?<h1>
       <form class="text-center ">
@@ -57,35 +57,39 @@
         </div>
       </form>
     </div>
+  <!-- End of User dropdown and input boxes -->
 
-    <div class="container">
-      <h1 class="text-left weatherHeadline1"></h1>
-      <h3 id="city" class="text-left weatherHeadline2"></h3>
-    <div id="weatherDiv">
-      <div class="row">
-        <div class="col-md-12">
+<!-- Weather div that displays weather based on user city search -->
+<div class="container background">
+  <h1 class="text-center weatherHeadline1">Weather & 5 Day Forecast</h1>
+      <h3 id="city" class="text-center weatherHeadline2"></h3>
+      <div id="weatherDiv">
+        <div class="row">
+          <div class="col-md-12">
+          </div>
+        </div>
+        <div id="forecast" class="row">
+        </div>
+      </div>
+
     </div>
-  </div>
-  <div id="forecast" class="row">
-  </div>
-  </div>
-  </div>
+    <!-- End of Weather Div -->
 
-
-  <div class="container background">
-  <div id="activitiesBG">
-    <div id="topPicks" class="text-center"></div>
-    <div>
-      <div id="activitiesDiv" class="row mx-auto scroll">
+    <!-- Activities div that displays user search picks -->
+    <div class="container background">
+      <div id="activitiesBG">
+        <div id="topPicks" class="text-center"></div>
+        <div>
+          <div id="activitiesDiv" class="row mx-auto scroll">
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  </div>
-  </div>
-  <!-- </div>
-  </div> -->
+  <!--End of activities div -->
 
-<div id="myModal" class="modal">
+  <!-- Modol that appears when card is clicked -->
+  <div id="myModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <div id="cardClicked" class="row">
@@ -98,19 +102,18 @@
       </div>
       <div id="similar" class="row">
       </div>
-      <div id="eventsNameSlogan"class="row text-center">
+      <div id="eventsNameSlogan" class="row text-center">
+      </div>
+      <div id="liveEvents" class="row ">
+
+      </div>
+      <div id="moreEvents" class="row text-center">
+
       </div>
     </div>
- </div>
-<!-- </div> -->
+  </div>
+  <!-- End of Model -->
 
-
-  <!-- <footer class="footer">
-    <div class="container">
-      <span class="text-muted">&copy 2018 - Travel Lion</span>
-    </div>
-  </footer> -->
-  <!-- </div> -->
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -138,5 +141,6 @@
   <script src="javascript/custom.js">
   </script>
 </body>
+
 
 </html>
