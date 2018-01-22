@@ -148,7 +148,14 @@ body:after {
 }
 
 .card3 {
-  background-color: #85848d;
+  background-color: #a4b6c5;
+  font-size: 12px;
+  opacity: 0.9;
+  border: 0;
+}
+
+.forecast {
+  padding: 0;
 }
 .addressItalic {
   font-style: italic;
