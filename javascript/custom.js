@@ -16,6 +16,8 @@ var userCityandState = "";
 var userSearch = "";
 var userLimit = 12;
 var currentDate = moment().format('YYYYMMDD');
+var lat = "";
+var lng = "";
 console.log("the date is", currentDate);
 
 // foursquare keys
@@ -269,7 +271,7 @@ $.ajax({
       </div>
       `);
 
-
+    
 
     for (let i = 0; i < 4; i++) {
       let simName = simPlaces.items[i].name;
@@ -318,7 +320,8 @@ $.ajax({
 })
 .done(function(response) {
   console.log(response);
-
+    lat = response.response.venue.location.lat;
+    lng = response.response.venue.location.lng;
     var venueClicked = response.response.venue;
     let venueName = venueClicked.name;
     let venueRating = venueClicked.rating;
@@ -392,7 +395,7 @@ $.ajax({
       </div>
     `);
 
-    windowAppear(venueLat,venueLng,5);
+    windowAppear(5, 5);
   });
 // });
 
@@ -401,74 +404,104 @@ $.ajax({
 
 // <br>${hours}
 
-
+});
 
 //
-function windowAppear(lat, lng, radius){
- // $(".eventDiv").remove();
- // $(".close").append('<div class= "row eventDiv"></div>');
+function windowAppear(eventsLength, radius){
+  console.log(eventsLength);
+  let apiKey = "9AA0Y5Keollt4AMn15i3aZl2Ui1z8Rgm";
+  
+  let startDateTime = moment().format();
+  let endDateTime = moment().add(1, 'months');
+  endDateTime = moment(endDateTime).format();
+  console.log(endDateTime);
+  // let radius = radius.toString();
 
- var app_key = '4NhTP97rgMpjW6Tr';
+  let latLong = (lat + "," + lng).toString();
+  console.log(latLong);
+  let queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?"+ "sort=date,asc" + "&startDateTime="+ startDateTime + "&endDateTime="+ endDateTime
+  + "&latlong=" + latLong + "&radius=" + radius + "&apikey=" + apiKey;
+  console.log(queryURL);
+  
+  if (eventsLength === 5){
+    $(".modal-content").append(`<div id="liveEvents" class ="row" ></div>`);
+  } else {
+    $("#myModal").append(`<div id="liveEvents" class ="row" ></div>`);
+  }
 
- var futureMonth = moment(currentDate).add(1, 'M');
- futureMonth = moment(futureMonth).format('YYYYMMDD' + "00");
- currentDate =  moment().format('YYYYMMDD' + "00");
- var placeLocation = (lat + ',' + lng);
- console.log(placeLocation);
- var oArgs = {
-    app_key: app_key,
-    q: "",
-    where:  (placeLocation),
-    within: radius,
-    "date": currentDate + "-" + futureMonth,
-    "include": "tags,categories",
-    page_size: 5,
-    sort_order: "popularity",
- };
- EVDB.API.call("/events/search", oArgs, function(response) {
+  $.ajax({
+  type:"GET",
+  url:queryURL,
+  async:true,
+  dataType: "json",
+  success: function(response) {
+            console.log(response);
+           let event = response._embedded.events
+           $("#eventsNameSlogan").append(`
+            <div class=" col">
+            <h3 class="text-center">Live Events</h3>
+            </div>
+            `);
+            
+         
+            for (i = 0; i < eventsLength; i++){
+     
+          let eventName = event[i].name;
+          let eventAddress = event[i]._embedded.venues[0].address.line1 + ",   " + event[i]._embedded.venues[0].name
+           + ",   " + event[i]._embedded.venues[0].city.name + ", " + event[i]._embedded.venues[0].state.stateCode + 
+           ", " + event[i]._embedded.venues[0].postalCode;
+          let eventDate = moment(event[i].dates.start.dateTime).format('lll');
+        //   // Build Venue Image Url
+          let eventImageUrl = event[i].images[0].url;
+          let eventTicketUrl = event[i].url;
+          console.log(eventTicketUrl);
+           
+          $("#liveEvents").append(`
+            <div class=" card row">
+              <div class="card-img-top gpbg1 ">
+                <img src="${eventImageUrl}" class="img-responsive eventImage" alt="">
+              </div>
+              <div class="card-block cardEvent">
+                <h5 class="event-title card-title">${eventName}</h5>
+                <p>${eventAddress}</p>
+                <p class="event-day">${eventDate}</p>
+              </div>
+              <div class="card-footer text-center">
+              <a href="${eventTicketUrl}" target="_blank">Tickets</a>
+            </div>
+            </div>
+            
+            `)
+         } 
+         if (eventsLength === 5){
+          $("#liveEvents").append( `<div id="moreEvents" style = 'color:#0000FF; cursor: pointer'>... more events</div>`);
+         };
+        },
+   });
 
-     console.log(response);
 
-    let event = response.events.event;
-     console.log("Event " + event[0].city_name);
-     $("#eventsNameSlogan").append(`
-       <div class=" col">
-       <h3 class="text-center">Live Events</h3>
-       </div>
-       `);
-    for (i = 0; i < event.length; i++){
-
-     let eventName = event[i].title;
-     let eventAddress = event[i].venue_address + ",   " + event[i].venue_name + ",   " + event[i].city_name +
-      ", " + event[i].region_abbr + ", " + event[i].postal_code;
-     var eventDate = moment(event[i].start_time).format('lll');
-     // Build Venue Image Url
-     let eventImageUrl = event[i].image.medium.url;
-     console.log(eventImageUrl);
-     $("#liveEvents").append(`
-       <div class=" card row">
-         <div class="card-img-top gpbg1 ">
-           <img src="${eventImageUrl}" class="img-responsive eventImage" alt="">
-         </div>
-         <div class="card-block cardEvent">
-           <h5 class="event-title card-title">${eventName}</h5>
-           <p>${eventAddress}</p>
-           <p class="event-day">${eventDate}</p>
-         </div>
-       </div>
-       `)
-    }
-
-  });
-
-
-  modal.style.display = "block";
+  // modal.style.display = "block";
 };
 
 
-});
 
-span.onclick = function() {
+
+$(document).on("click", "#moreEvents", function(){
+  modal.style.display = "none";
+  
+      $("#cardClickedShow").empty();
+      $("#userTips").empty();
+      $("#similar").empty();
+      $("#liveEvents").empty();
+      $("#similarNameSlogan").empty();
+      $("#eventsNameSlogan").empty();;
+  
+  modal.style.display = "block";
+  windowAppear(20, 30);
+})
+
+
+span.onclick = function () {
     modal.style.display = "none";
 
     $("#cardClickedShow").empty();
