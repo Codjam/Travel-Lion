@@ -176,7 +176,7 @@ $("#submitBtn").on("click", function(event) {
         // console.log(lat);
         // console.log(long);
 
-        $('#city').text(response.query.results.channel.location.city + ", " + response.query.results.channel.location.region);
+        $('#city').text('Weather: ' + response.query.results.channel.location.city + ", " + response.query.results.channel.location.region);
         $('#city').addClass("weatherHeadline2");
         for (i = 0; i < 6; i++) {
           let code = response.query.results.channel.item.forecast[i].code;
@@ -194,7 +194,7 @@ $("#submitBtn").on("click", function(event) {
 
           div.attr("id", "forecast-day" + i);
           div.attr("class", "forecast col");
-          cardDiv.addClass("card2");
+          cardDiv.addClass("card3");
           cardBlock.addClass("text-center");
 
           icon.attr("src", "http://l.yimg.com/a/i/us/we/52/" + response.query.results.channel.item.forecast[i].code + ".gif");
@@ -322,6 +322,7 @@ $.ajax({
   console.log(response);
     lat = response.response.venue.location.lat;
     lng = response.response.venue.location.lng;
+    windowAppear(5, 10);
     var venueClicked = response.response.venue;
     let venueName = venueClicked.name;
     let venueRating = venueClicked.rating;
@@ -395,7 +396,7 @@ $.ajax({
       </div>
     `);
 
-    windowAppear(5, 5);
+   
   });
 // });
 
