@@ -20,6 +20,7 @@
   <div class="mainBody stage0">
 
     <div class="container" id="inputDiv">
+
       <div class="headline animated slideInDown">
 
         <!-- added by jamal to chang animationt  -->
@@ -28,6 +29,9 @@
         </h1><br><span><h4 class="slogan">Places to go. Things to see.</h4></span>
 
       <div>
+<!-- ======= -->
+      <!-- <h1 class="headline animated slideInDown">Hello, where would you like to travel?<h1> -->
+<!-- >>>>>>> refs/remotes/origin/master -->
       <form class="text-center ">
         <div class="form-group">
           <select id="userCardsLimit" class="text-center btn btn-secondary dropdown-toggle userCardsValueFormat border rounded-left" name="">
@@ -54,7 +58,6 @@
             <option>Fun</option>
             <option>Shops</option>
             <option>Arts</option>
-            <option>Outoors</option>
             <option>Sights</option>
             <option>Gym</option>
           </select>
@@ -65,18 +68,22 @@
       </form>
     </div>
 
-    <div id="weatherDiv" class="container background">
+    <div class="container background">
+      <h1 class="text-center weatherHeadline1">Weather & 5 Day Forecast</h1>
+      <h3 id="city" class="text-center weatherHeadline2"></h3>
+    <div id="weatherDiv">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-center">Weather & 5 Day Forcast</h1>
     </div>
   </div>
-  <h3 id="city" class="text-center"></h3>
   <div id="forecast" class="row">
   </div>
   </div>
+  </div>
 
-  <div id="activitiesBG" class="container background">
+
+  <div class="container background">
+  <div id="activitiesBG">
     <div id="topPicks" class="text-center"></div>
     <div>
       <div id="activitiesDiv" class="row mx-auto scroll">
@@ -85,19 +92,41 @@
   </div>
   </div>
   </div>
-  </div>
-  </div>
-  <footer class="footer">
+  <!-- </div>
+  </div> -->
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="cardClicked" class="row">
+        <div id="cardClickedShow" class="card h-75 d-inline-block">
+        </div>
+        <div id="userTips" class="col-md-6">
+        </div>
+      </div>
+      <div id="similarNameSlogan" class="row">
+      </div>
+      <div id="similar" class="row">
+      </div>
+      <div id="eventsNameSlogan"class="row text-center">
+      </div>
+    </div>
+ </div>
+<!-- </div> -->
+
+
+  <!-- <footer class="footer">
     <div class="container">
       <span class="text-muted">&copy 2018 - Travel Lion</span>
     </div>
-  </footer>
-  </div>
+  </footer> -->
+  <!-- </div> -->
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script type="text/javascript" src="https://api.eventful.com/js/api"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
