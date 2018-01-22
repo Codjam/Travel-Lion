@@ -66,6 +66,7 @@ body {
   font-size: 3.5rem;
     text-transform: uppercase;
     font-weight: 700;
+    border-color: linear-gradient(to right, #7ed56f, #28b485);
     display: inline-block;
     /*background-image: -webkit-gradient(linear, left top, right top, from(#7ed56f), to(#28b485));*/
     background-image: linear-gradient(to right, #7ed56f, #28b485);
@@ -232,10 +233,10 @@ body:after {
   right: -3px;
   display: inline-block;
   color: #fff;
-  background-color: ##7c7c7c;
+  background-color: #7c7c7c;
   text-decoration: none;
   /*padding: 1rem 2rem;*/
-  border: #fff; 1px solid;
+  /*border: #fff; 1px solid;*/
   /*margin-top: 30px;*/
   opacity: 200;
   animation-name: btn;
