@@ -169,6 +169,16 @@ body:after {
   margin-bottom: 15px;
 }
 
+.card3 {
+  font-size: 15px;
+  background-color: rgb(171, 187, 199);
+  /* opacity: 0.9; */
+}
+
+.forecast {
+  padding: 2px;
+}
+
 
 .bizImageFormat{
   width: 300px;
