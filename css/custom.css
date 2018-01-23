@@ -52,10 +52,32 @@ body {
   text-align: center;
   padding-top: 5rem;
   padding-bottom: 3rem;
-  -webkit-text-stroke-width: .5px;
-  -webkit-text-stroke-color: rgba(247, 248, 249, .9);
+  /* -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: rgba(247, 248, 249, .9); */
   font-weight: 500;
 }
+
+/* Added by Jamal */
+.headline-word{
+  /*transition: 2s;*/
+  font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-color: linear-gradient(to right, #7ed56f, #28b485);
+    display: inline-block;
+    /*background-image: -webkit-gradient(linear, left top, right top, from(#7ed56f), to(#28b485));*/
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: .2rem;
+    /*-webkit-transition: all .2s;*/
+    transition: all .7s;
+}
+.headline-word:hover{
+  transform: skewX(30deg);
+}
+/* End of Jamal add in */
+
 
 .footer {
   position: absolute;
@@ -158,7 +180,7 @@ body:after {
 
 .liveEventCardFormat{
   width: 221px;
-  height: 220px;
+  height: 230px;
 }
 
 .eventImage{
@@ -192,7 +214,7 @@ body:after {
   padding-left: 10px;
   font-style: italic;
   position: relative;
-  bottom: 5px;
+  bottom: -2px;
   right: 10px;
   font-size: 16px;
 }
@@ -213,7 +235,7 @@ body:after {
   border-left: 0px;
 }
 
-#submitBtn {
+/* #submitBtn {
   height: 43px;
   position: relative;
   right: -3px;
@@ -221,7 +243,30 @@ body:after {
 
 #submitBtn:hover {
   background-color: #4c4c4c;
+} */
+
+#submitBtn {
+  height: 43px;
+  position: relative;
+  right: -4px;
+  left: -4px;
+  display: inline-block;
+  color: #fff;
+  background-color: #7c7c7c;
+  text-decoration: none;
+  opacity: 200;
+  animation-name: btn;
+  animation-duration: 3s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+  transition-property: transform;
+  transition-duration: 1s;
 }
+#submitBtn:hover {
+  transform: rotateY(360deg);
+  background-color: blue;
+}
+
 
 #activitiesBG {
   background-color: transparent;
