@@ -407,91 +407,88 @@ $(document).on("click", ".cardLaunch", function() {
       });
     // End of Foursquare user tips Ajax Request
 
-    // Ticketmaster Ajax Request
-    function windowAppear(eventsLength, radius) {
-        let apiKey = "9AA0Y5Keollt4AMn15i3aZl2Ui1z8Rgm";
-        let startDateTime = moment().format();
-        let endDateTime = moment().add(1, 'months');
-        endDateTime = moment(endDateTime).format();
-        let latLong = (lat + "," + lng).toString();
-        let queryURL5 = "https://app.ticketmaster.com/discovery/v2/events.json?" + "sort=date,asc" + "&startDateTime=" + startDateTime
-        + "&endDateTime=" + endDateTime + "&latlong=" + latLong + "&radius=" + radius + "&apikey=" + apiKey;
-
-        if (eventsLength === 4) {
-            $(".modal-content").append(`<div id="liveEvents" class ="row" ></div>`);
-          } else {
-            $("#myModal").append(`<div id="liveEvents" class ="row" ></div>`);
-          }
-
-        $.ajax({
-          type: "GET",
-          url: queryURL5,
-          async: true,
-          dataType: "json",
-          success: function(response) {
-            console.log(response);
-            let event = response._embedded.events
-            $("#eventsNameSlogan").append(`
-              <div class=" col">
-                <h3 class="text-center">Live Events</h3>
-              </div>
-            `);
-
-            for (i = 0; i < eventsLength; i++) {
-              let eventName = event[i].name;
-              let eventAddress = event[i]._embedded.venues[0].address.line1 + ",   " + event[i]._embedded.venues[0].name +
-                ",   " + event[i]._embedded.venues[0].city.name + ", " + event[i]._embedded.venues[0].state.stateCode +
-                ", " + event[i]._embedded.venues[0].postalCode;
-              let eventDate = moment(event[i].dates.start.dateTime).format('lll');
-
-              //   // Build Venue Image Url
-              let eventImageUrl = event[i].images[0].url;
-              let eventTicketUrl = event[i].url;
-              $("#liveEvents").append(`
-                <div class=" card ">
-                    <div class="card-img-top ">
-                    <img src="${eventImageUrl}" class="img-responsive eventImage" alt="">
-                  </div>
-                  <div class="card-block liveEventCardFormat">
-                    <h5 class="event-title card-title">${eventName}</h5>
-                    <p class="addressItalic">${eventAddress}</p>
-                    <p class="event-day">${eventDate}</p>
-                  </div>
-                  <div class="card-footer text-center">
-                    <a href="${eventTicketUrl}" target="_blank">Tickets</a>
-                  </div>
-                </div>
-              `)
-            }
-            if (eventsLength === 4) {
-              $("#moreEvents").append(`<div class="col text-center" style = 'color:#0000FF; font-size: 18px; cursor: pointer'>... more events</div>`);
-            };
-          },
-        });
-      };
-    // End of Ticketmaster Ajax Request
-
-
-
-    $(document).on("click", "#moreEvents", function() {
-      modal.style.display = "none";
-
-        $("#cardClickedShow").empty();
-        $("#userTips").empty();
-        $("#similar").empty();
-        $("#liveEvents").empty();
-        $("#similarNameSlogan").empty();
-        $("#eventsNameSlogan").empty();
-        $("#moreEvents").empty();
-
-
-        modal.style.display = "block";
-        windowAppear(24, 30);
-    })
 });
 // ************************** End Card Click Function**************************************************************************
 
+    // Ticketmaster Ajax Request
+function windowAppear(eventsLength, radius) {
+  let apiKey = "9AA0Y5Keollt4AMn15i3aZl2Ui1z8Rgm";
+  let startDateTime = moment().format();
+  let endDateTime = moment().add(1, 'months');
+  endDateTime = moment(endDateTime).format();
+  let latLong = (lat + "," + lng).toString();
+  let queryURL5 = "https://app.ticketmaster.com/discovery/v2/events.json?" + "sort=date,asc" + "&startDateTime=" + startDateTime
+  + "&endDateTime=" + endDateTime + "&latlong=" + latLong + "&radius=" + radius + "&apikey=" + apiKey;
 
+  if (eventsLength === 4) {
+      $(".modal-content").append(`<div id="liveEvents" class ="row" ></div>`);
+    } else {
+      $("#myModal").append(`<div id="liveEvents" class ="row" ></div>`);
+      $("#eventsNameSlogan").append(`
+      <div class=" col">
+        <h3 class="text-center">Live Events</h3>
+      </div>
+    `);
+    }
+
+  $.ajax({
+    type: "GET",
+    url: queryURL5,
+    async: true,
+    dataType: "json",
+  }). done(function(response) {
+      console.log(response);
+      let event = response._embedded.events
+      
+
+      for (i = 0; i < eventsLength; i++) {
+        let eventName = event[i].name;
+        let eventAddress = event[i]._embedded.venues[0].address.line1 + ",   " + event[i]._embedded.venues[0].name +
+          ",   " + event[i]._embedded.venues[0].city.name + ", " + event[i]._embedded.venues[0].state.stateCode +
+          ", " + event[i]._embedded.venues[0].postalCode;
+        let eventDate = moment(event[i].dates.start.dateTime).format('lll');
+
+        //   // Build Venue Image Url
+        let eventImageUrl = event[i].images[0].url;
+        let eventTicketUrl = event[i].url;
+        $("#liveEvents").append(`
+          <div class="card" id="eventLive">
+              <div class="card-img-top ">
+              <img src="${eventImageUrl}" class="img-responsive eventImage" alt="">
+            </div>
+            <div class="card-block liveEventCardFormat">
+              <h5 class="event-title card-title">${eventName}</h5>
+              <p class="addressItalic">${eventAddress}</p>
+              <p class="event-day">${eventDate}</p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="${eventTicketUrl}" target="_blank">Tickets</a>
+            </div>
+          </div>
+        `)
+      }
+      if (eventsLength === 4) {
+        $("#moreEvents").append(`<div class="col text-center" style = 'color:#0000FF; font-size: 18px; cursor: pointer'>... more events</div>`);
+      };
+    });
+};
+// End of Ticketmaster Ajax Request
+
+$(document).on("click", "#moreEvents", function() {
+  
+  modal.style.display = "none";
+    
+  $("#cardClickedShow").empty();
+  $("#userTips").empty();
+  $("#similar").empty();
+  $("#liveEvents").empty();
+  $("#similarNameSlogan").empty();
+  $("#eventsNameSlogan").empty();
+  $("#moreEvents").empty();
+
+  modal.style.display = "block";
+  windowAppear(24, 30);
+  })
 
 span.onclick = function() {
   modal.style.display = "none";

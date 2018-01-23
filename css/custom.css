@@ -210,6 +210,10 @@ body:after {
   padding: 5px;
 }
 
+.cardLaunch {
+  cursor: pointer;
+}
+
 .card-block h5{
   font-weight:bold;
 }
