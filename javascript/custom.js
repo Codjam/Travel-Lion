@@ -424,13 +424,12 @@ function windowAppear(eventsLength, radius) {
       $(".modal-content").append(`<div id="liveEvents" class ="row" ></div>`);
     } else {
       $("#myModal").append(`<div id="liveEvents" class ="row" ></div>`);
-      $("#eventsNameSlogan").append(`
-      <div class=" col">
-        <h3 class="text-center">Live Events</h3>
-      </div>
-    `);
     }
-
+    $("#eventsNameSlogan").append(`
+    <div class=" col">
+      <h3 class="text-center">Live Events</h3>
+    </div>
+  `);
   $.ajax({
     type: "GET",
     url: queryURL5,
