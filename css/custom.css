@@ -275,6 +275,7 @@ body:after {
   animation-fill-mode: forwards;
   transition-property: transform;
   transition-duration: 1s;
+  visibility: hidden;
 }
 #submitBtn:hover {
   transform: rotateY(360deg);
