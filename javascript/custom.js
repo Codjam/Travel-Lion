@@ -204,7 +204,7 @@ $("#submitBtn").on("click", function(event) {
 
                   div.attr("id", "forecast-day" + i);
                   div.attr("class", "forecast col");
-                  cardDiv.addClass("card3");
+                  cardDiv.addClass("card4");
                   cardBlock.addClass("text-center");
 
                   icon.attr("src", "http://l.yimg.com/a/i/us/we/52/" + response.query.results.channel.item.forecast[i].code + ".gif");
@@ -502,6 +502,8 @@ span.onclick = function() {
   $("#liveEvents").empty();
   $("#similarNameSlogan").empty();
   $("#eventsNameSlogan").empty();
+  $("#moreEvents").empty();
+  
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -515,6 +517,8 @@ window.onclick = function(event) {
     $("#liveEvents").empty();
     $("#similarNameSlogan").empty();
     $("#eventsNameSlogan").empty();
+    $("#moreEvents").empty();
+    
 
   }
 }
