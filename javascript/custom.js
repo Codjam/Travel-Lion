@@ -120,35 +120,35 @@ $("#submitBtn").on("click", function(event) {
                     let bizAddy = $("<p>");
                     let bizRate = $("<p>");
                     let bizUrl = $("<a>");
-                    bizCard.css('width', '301');
-                    bizCard.data("venueid", bizId);
-                    bizCard.addClass("cardLaunch");
-                    bizImg.attr('src', bizImage);
-                    bizImg.css('width', '300');
-                    bizBlock.addClass('cardPadding');
-                    bizTitle.html("<b>" + bizName + "</b>");
-                    bizCat.html("<b>" + categories + "</b><br>");
-                    // bizUrl.html("<a target=\"_blank\" href=" + url + ">Website</a>");
-                    bizRate.text("Rating " + rating);
-                    bizAddy.addClass('addressItalic');
-                    bizAddy.html(bizAddress);
-                    bizCard.append(imageShadow, bizImg, bizBlock);
-                    bizBlock.append(bizTitle, bizCat, bizAddy, bizRate, bizUrl);
-                    $("#activitiesDiv").append(bizCard);
-                    // $("#activitiesDiv").append(`
-                    //   <div class="card cardLaunch bizCardFormat" data-venueid*=${bizId}>
-                    //     <div>
-                    //       <img src="${bizImage}" class="card-img-top img-responsive bizImageFormat" alt="Venue Image">
-                    //       <div class="card-block cardPadding">
-                    //         <h4 class="card-title"><b>${bizName}</b></h4>
-                    //
-                    //         <b>${categories}</b>
-                    //         <p class="addressItalic">${bizAddress}</p>
-                    //         <p>Rating: ${rating}</p>
-                    //       </div>
-                    //     </div>
-                    //   </div>
-                    //   `);
+                    // bizCard.css('width', '301');
+                    // bizCard.data("venueid", bizId);
+                    // bizCard.addClass("cardLaunch");
+                    // bizImg.attr('src', bizImage);
+                    // bizImg.css('width', '300');
+                    // bizBlock.addClass('cardPadding');
+                    // bizTitle.html("<b>" + bizName + "</b>");
+                    // bizCat.html("<b>" + categories + "</b><br>");
+                    // // bizUrl.html("<a target=\"_blank\" href=" + url + ">Website</a>");
+                    // bizRate.text("Rating " + rating);
+                    // bizAddy.addClass('addressItalic');
+                    // bizAddy.html(bizAddress);
+                    // bizCard.append(imageShadow, bizImg, bizBlock);
+                    // bizBlock.append(bizTitle, bizCat, bizAddy, bizRate, bizUrl);
+                    // $("#activitiesDiv").append(bizCard);
+
+                    $("#activitiesDiv").append(`
+                      <div class="card cardLaunch bizCardFormat" data-venueid="${bizId}">
+                        <div>
+                         <img src="${bizImage}" class="card-img-top img-responsive bizImageFormat" alt="Venue Image">
+                         <div class="card-block cardPadding">
+                           <h4 class="card-title"><b>${bizName}</b></h4>
+                            <b>${categories}</b>
+                            <p class="addressItalic">${bizAddress}</p>
+                           <p>Rating: ${rating}</p>
+                          </div>
+                        </div>
+                      </div>
+                    `);
                     $("#topPicks").html("<h1>" + userSearch + " Recommendations for " + userCityandState);
                   }
                 } else {
@@ -403,7 +403,7 @@ $(document).on("click", ".cardLaunch", function() {
             </div>
           `);
     // Calling funtion that sets the events miles and radius for ticketmaster
-        windowAppear(5, 5);
+        windowAppear(4, 5);
       });
     // End of Foursquare user tips Ajax Request
 
@@ -417,7 +417,7 @@ $(document).on("click", ".cardLaunch", function() {
         let queryURL5 = "https://app.ticketmaster.com/discovery/v2/events.json?" + "sort=date,asc" + "&startDateTime=" + startDateTime
         + "&endDateTime=" + endDateTime + "&latlong=" + latLong + "&radius=" + radius + "&apikey=" + apiKey;
 
-        if (eventsLength === 5) {
+        if (eventsLength === 4) {
             $(".modal-content").append(`<div id="liveEvents" class ="row" ></div>`);
           } else {
             $("#myModal").append(`<div id="liveEvents" class ="row" ></div>`);
@@ -463,7 +463,7 @@ $(document).on("click", ".cardLaunch", function() {
                 </div>
               `)
             }
-            if (eventsLength === 5) {
+            if (eventsLength === 4) {
               $("#moreEvents").append(`<div class="col text-center" style = 'color:#0000FF; font-size: 18px; cursor: pointer'>... more events</div>`);
             };
           },
@@ -486,7 +486,7 @@ $(document).on("click", ".cardLaunch", function() {
 
 
         modal.style.display = "block";
-        windowAppear(30, 30);
+        windowAppear(24, 30);
     })
 });
 // ************************** End Card Click Function**************************************************************************
