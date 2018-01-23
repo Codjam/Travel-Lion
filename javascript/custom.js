@@ -29,6 +29,9 @@ var client_secret = "U0BF5HKPA54ZB4KPTDIPAZLCV3X4435YPVCBUZAZEWTKVL42";
 
 
 // Hide content divs foursquare and weather
+$("#submitBtn").css({
+  "visibility": "visible"
+});
 $("#submitBtn").hide();
 $("#userCardsLimit").hide();
 setTimeout(showSubmitAndLimitBtn, 1000);
@@ -204,7 +207,7 @@ $("#submitBtn").on("click", function(event) {
 
                   div.attr("id", "forecast-day" + i);
                   div.attr("class", "forecast col");
-                  cardDiv.addClass("card4");
+                  // cardDiv.addClass("card4");
                   cardBlock.addClass("text-center");
 
                   icon.attr("src", "http://l.yimg.com/a/i/us/we/52/" + response.query.results.channel.item.forecast[i].code + ".gif");
@@ -438,7 +441,7 @@ function windowAppear(eventsLength, radius) {
   }). done(function(response) {
       console.log(response);
       let event = response._embedded.events
-      
+
 
       for (i = 0; i < eventsLength; i++) {
         let eventName = event[i].name;
@@ -474,9 +477,9 @@ function windowAppear(eventsLength, radius) {
 // End of Ticketmaster Ajax Request
 
 $(document).on("click", "#moreEvents", function() {
-  
+
   modal.style.display = "none";
-    
+
   $("#cardClickedShow").empty();
   $("#userTips").empty();
   $("#similar").empty();
@@ -499,7 +502,7 @@ span.onclick = function() {
   $("#similarNameSlogan").empty();
   $("#eventsNameSlogan").empty();
   $("#moreEvents").empty();
-  
+
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -514,7 +517,7 @@ window.onclick = function(event) {
     $("#similarNameSlogan").empty();
     $("#eventsNameSlogan").empty();
     $("#moreEvents").empty();
-    
+
 
   }
 }
