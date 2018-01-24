@@ -1,7 +1,7 @@
 # Travel-Lion
-Group Prodject #1
+Group Project #1
+[Website](https://codjam.github.io/Travel-Lion/);
 
-
-This project allows users to search for a flight during a specified timeframe and pull
-back the flight information, and the weather for that area and timeframe (if weather
-applicable during that time)
+[](assets/images/readme1.jpg);
+[](assets/images/readme2.jpg);
+[](assets/images/readme3.jpg);
