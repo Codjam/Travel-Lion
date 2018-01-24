@@ -123,35 +123,35 @@ $("#submitBtn").on("click", function(event) {
                     let bizAddy = $("<p>");
                     let bizRate = $("<p>");
                     let bizUrl = $("<a>");
-                    // bizCard.css('width', '301');
-                    // bizCard.data("venueid", bizId);
-                    // bizCard.addClass("cardLaunch");
-                    // bizImg.attr('src', bizImage);
-                    // bizImg.css('width', '300');
-                    // bizBlock.addClass('cardPadding');
-                    // bizTitle.html("<b>" + bizName + "</b>");
-                    // bizCat.html("<b>" + categories + "</b><br>");
-                    // // bizUrl.html("<a target=\"_blank\" href=" + url + ">Website</a>");
-                    // bizRate.text("Rating " + rating);
-                    // bizAddy.addClass('addressItalic');
-                    // bizAddy.html(bizAddress);
-                    // bizCard.append(imageShadow, bizImg, bizBlock);
-                    // bizBlock.append(bizTitle, bizCat, bizAddy, bizRate, bizUrl);
-                    // $("#activitiesDiv").append(bizCard);
+                    bizCard.css('width', '301');
+                    bizCard.data("venueid", bizId);
+                    bizCard.addClass("cardLaunch");
+                    bizImg.attr('src', bizImage);
+                    bizImg.css('width', '300');
+                    bizBlock.addClass('cardPadding');
+                    bizTitle.html("<b>" + bizName + "</b>");
+                    bizCat.html("<b>" + categories + "</b><br>");
+                    // bizUrl.html("<a target=\"_blank\" href=" + url + ">Website</a>");
+                    bizRate.text("Rating " + rating);
+                    bizAddy.addClass('addressItalic');
+                    bizAddy.html(bizAddress);
+                    bizCard.append(imageShadow, bizImg, bizBlock);
+                    bizBlock.append(bizTitle, bizCat, bizAddy, bizRate, bizUrl);
+                    $("#activitiesDiv").append(bizCard);
 
-                    $("#activitiesDiv").append(`
-                      <div class="card cardLaunch bizCardFormat" data-venueid="${bizId}">
-                        <div>
-                         <img src="${bizImage}" class="card-img-top img-responsive bizImageFormat" alt="Venue Image">
-                         <div class="card-block cardPadding">
-                           <h4 class="card-title"><b>${bizName}</b></h4>
-                            <b>${categories}</b>
-                            <p class="addressItalic">${bizAddress}</p>
-                           <p>Rating: ${rating}</p>
-                          </div>
-                        </div>
-                      </div>
-                    `);
+                    // $("#activitiesDiv").append(`
+                    //   <div class="card cardLaunch bizCardFormat" data-venueid="${bizId}">
+                    //     <div>
+                    //      <img src="${bizImage}" class="card-img-top img-responsive bizImageFormat" alt="Venue Image">
+                    //      <div class="card-block cardPadding">
+                    //        <h4 class="card-title"><b>${bizName}</b></h4>
+                    //         <b>${categories}</b>
+                    //         <p class="addressItalic">${bizAddress}</p>
+                    //        <p>Rating: ${rating}</p>
+                    //       </div>
+                    //     </div>
+                    //   </div>
+                    // `);
                     $("#topPicks").html("<h1>" + userSearch + " Recommendations for " + userCityandState);
                   }
                 } else {
