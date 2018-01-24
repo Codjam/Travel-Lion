@@ -278,7 +278,7 @@ body:after {
   visibility: hidden;
 }
 #submitBtn:hover {
-  transform: rotateY(360deg);
+  /* transform: rotateY(360deg); */
   background-color: blue;
 }
 
